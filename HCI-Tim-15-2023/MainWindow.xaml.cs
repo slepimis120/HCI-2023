@@ -41,8 +41,8 @@ namespace HCI_Tim_15_2023
 
         private void Login(object sender, RoutedEventArgs e)
         {
-            CRUD crud = new CRUD();
-            crud.Show();
+            AgentHomeWindow agentHomeWindow = new AgentHomeWindow();
+            agentHomeWindow.Show();
             Close();
         }
     }

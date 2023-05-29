@@ -2,9 +2,9 @@
 
 namespace HCI_Tim_15_2023.GUI;
 
-public partial class CRUD : Window
+public partial class RestaurantCrudWindow : Window
 {
-    public CRUD()
+    public RestaurantCrudWindow()
     {
         InitializeComponent();
     }
