@@ -7,6 +7,24 @@
         mc:Ignorable="d"
         Title="RestaurantCrudWindow" Height="450" Width="800">
     <Grid>
-        <TextBox>:D</TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" x:Name="restaurantsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Top"   Margin="0,20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="auto" />
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding address}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <TextBox>1231254</TextBox>
+            <TextBox>1231254</TextBox>
+            <TextBox>1231254</TextBox>
+            <TextBox>1231254</TextBox>
+            <TextBox>1231254</TextBox>
+        </StackPanel>
     </Grid>
 </Window>

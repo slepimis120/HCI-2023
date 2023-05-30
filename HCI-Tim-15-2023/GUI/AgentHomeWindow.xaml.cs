@@ -8,4 +8,11 @@ public partial class AgentHomeWindow : Window
     {
         InitializeComponent();
     }
+
+    private void OpenRestaurantCRUD(object sender, RoutedEventArgs e)
+    {
+        RestaurantCrudWindow restaurantCrudWindow = new RestaurantCrudWindow();
+        restaurantCrudWindow.Show();
+        Close();
+    }
 }
