@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HCI_Tim_15_2023.GUI;
 using MongoDB.Driver;
 
 namespace HCI_Tim_15_2023
@@ -36,6 +37,13 @@ namespace HCI_Tim_15_2023
             var users = collection.Find(Builders<User>.Filter.Empty).ToList();
             
             Console.WriteLine(users);
+        }
+
+        private void Login(object sender, RoutedEventArgs e)
+        {
+            AgentHomeWindow agentHomeWindow = new AgentHomeWindow();
+            agentHomeWindow.Show();
+            Close();
         }
     }
 
