@@ -1,18 +1,16 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace HCI_Tim_15_2023.GUI;
-
-public partial class ClientHomeWindow : Window
+public partial class ClientHomePage : Page
 {
-    public ClientHomeWindow()
+    public ClientHomePage()
     {
         InitializeComponent();
     }
 
     private void LogOut(object sender, RoutedEventArgs e)
     {
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.Show();
-        Close();
+        this.NavigationService.Navigate(new LogInPage());
     }
 }

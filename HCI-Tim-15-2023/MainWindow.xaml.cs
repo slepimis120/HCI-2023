@@ -23,9 +23,13 @@ namespace HCI_Tim_15_2023
     ///
     public partial class MainWindow : Window
     {
+        public static NavigationService NavigationService => ((MainWindow)Application.Current.MainWindow).MainFrame.NavigationService;
+
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.NavigationService.Navigate(new LogInPage());
+
             Random rnd = new Random();
             string connectionString = "mongodb://localhost:27017";
             var client = new MongoClient(connectionString);
@@ -37,20 +41,6 @@ namespace HCI_Tim_15_2023
             var users = collection.Find(Builders<User>.Filter.Empty).ToList();
             
             Console.WriteLine(users);
-        }
-
-        private void LoginAgent(object sender, RoutedEventArgs e)
-        {
-            AgentHomeWindow agentHomeWindow = new AgentHomeWindow();
-            agentHomeWindow.Show();
-            Close();
-        }
-
-        private void LoginClient(object sender, RoutedEventArgs e)
-        {
-            ClientHomeWindow clientHomeWindow = new ClientHomeWindow();
-            clientHomeWindow.Show();
-            Close();
         }
     }
 
