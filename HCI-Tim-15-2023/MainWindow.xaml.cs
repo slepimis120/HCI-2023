@@ -39,10 +39,17 @@ namespace HCI_Tim_15_2023
             Console.WriteLine(users);
         }
 
-        private void Login(object sender, RoutedEventArgs e)
+        private void LoginAgent(object sender, RoutedEventArgs e)
         {
             AgentHomeWindow agentHomeWindow = new AgentHomeWindow();
             agentHomeWindow.Show();
+            Close();
+        }
+
+        private void LoginClient(object sender, RoutedEventArgs e)
+        {
+            ClientHomeWindow clientHomeWindow = new ClientHomeWindow();
+            clientHomeWindow.Show();
             Close();
         }
     }
