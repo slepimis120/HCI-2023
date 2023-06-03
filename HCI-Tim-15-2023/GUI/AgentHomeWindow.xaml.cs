@@ -15,4 +15,11 @@ public partial class AgentHomeWindow : Window
         restaurantCrudWindow.Show();
         Close();
     }
+
+    private void LogOut(object sender, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        Close();
+    }
 }

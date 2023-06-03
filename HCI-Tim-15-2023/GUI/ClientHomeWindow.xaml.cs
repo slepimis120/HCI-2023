@@ -8,4 +8,11 @@ public partial class ClientHomeWindow : Window
     {
         InitializeComponent();
     }
+
+    private void LogOut(object sender, RoutedEventArgs e)
+    {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.Show();
+        Close();
+    }
 }

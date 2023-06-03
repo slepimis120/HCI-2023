@@ -12,10 +12,12 @@
             <RowDefinition Height="20*" />
             <RowDefinition Height="20*" />
             <RowDefinition Height="20*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Click="OpenRestaurantCRUD">Restaurants</Button>
         <Button Grid.Row="1">Attractions</Button>
         <Button Grid.Row="2">Accommodations</Button>
         <Button Grid.Row="3">Travels</Button>
+        <Button Grid.Row="4" Click="LogOut">Log out</Button>
     </Grid>
 </Window>
