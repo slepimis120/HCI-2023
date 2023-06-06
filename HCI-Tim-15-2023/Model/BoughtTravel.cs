@@ -20,4 +20,12 @@ public class BoughtTravel
         this.travel = travel;
         this.time = time;
     }
+
+    public bool IsDone()
+    {
+        if(time < new DateTime())
+            return true;
+        else
+            return false;
+    }
 }
