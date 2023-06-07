@@ -18,4 +18,9 @@ public partial class LogInPage : Page
     {
         this.NavigationService.Navigate(new ClientHomePage());
     }
+
+    private void RegisterClient(object sender, RoutedEventArgs e)
+    {
+        this.NavigationService.Navigate(new RegisterPage());
+    }
 }

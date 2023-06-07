@@ -12,6 +12,10 @@
         <StackPanel>
             <Button Click="LoginAgent">Login Agent</Button>
             <Button Click="LoginClient">Login Client</Button>
+            <TextBox TextWrapping="Wrap" Text="Username"/>
+            <TextBox TextWrapping="Wrap" Text="Password"/>
+            <Button Click="LoginClient">Login</Button>
+            <Button Click="RegisterClient">Create a new account!</Button>
         </StackPanel>
     </Grid>
 </Page>

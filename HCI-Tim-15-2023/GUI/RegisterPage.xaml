@@ -1,0 +1,21 @@
+﻿<Page x:Class="HCI_Tim_15_2023.GUI.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HCI_Tim_15_2023.GUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegisterPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <TextBox TextWrapping="Wrap" Text="Username" Grid.Row="0"/>
+        <TextBox TextWrapping="Wrap" Text="Password" Grid.Row="1"/>
+        <Button Click="CreateAccount" Grid.Row="2">Create an account!</Button>
+    </Grid>
+</Page>
