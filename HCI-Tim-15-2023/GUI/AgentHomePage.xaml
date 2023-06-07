@@ -14,12 +14,16 @@
             <RowDefinition Height="20*" />
             <RowDefinition Height="20*" />
             <RowDefinition Height="20*" />
-            <RowDefinition Height="5*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
         <Button Grid.Row="0" Click="OpenRestaurantCRUD">Restaurants</Button>
         <Button Grid.Row="1">Attractions</Button>
         <Button Grid.Row="2">Accommodations</Button>
         <Button Grid.Row="3">Travels</Button>
-        <Button Grid.Row="4" Click="LogOut">Log out</Button>
+        <Button Grid.Row="4" Click="OpenAgentMonthlySoldTravelViewPage">Monthly sold travels</Button>
+        <Button Grid.Row="5" Click="OpenAgentSoldIndividualTravelViewPage">Individual travel sales</Button>
+        <Button Grid.Row="6" Click="LogOut">Log out</Button>
     </Grid>
 </Page>
