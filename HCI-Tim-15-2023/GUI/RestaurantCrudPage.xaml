@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:HCI_Tim_15_2023.GUI"
+      xmlns:model="clr-namespace:HCI_Tim_15_2023.Model"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="RestaurantCrudPage">
@@ -15,28 +16,60 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="searchTextBox" Width="NaN" MinWidth="200" TextChanged="SearchTextBox_TextChanged" />
-            <Button Content="Add" Click="AddButton_Click" Width="Auto" />
-        </StackPanel>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="searchTextBox" Grid.Column="0" MinWidth="200" Foreground="Gray" Opacity="0.5" Text="Search"
+                     GotFocus="SearchTextBox_GotFocus" LostFocus="SearchTextBox_LostFocus" TextChanged="SearchTextBox_TextChanged" />
+
+
+            <Button x:Name="addButton" Grid.Column="1" Content="Add" Click="AddButton_Click" Width="Auto" />
+        </Grid>
+
 
 
 
         <DataGrid Grid.Row="1" x:Name="restaurantsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
                   IsReadOnly="True"
-                  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,20">
+                  SelectionChanged="RestaurantsDataGrid_SelectionChanged"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,20">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="auto" />
                 <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*" />
                 <DataGridTextColumn Header="Address" Binding="{Binding address}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <TextBox>1231254</TextBox>
-            <TextBox>1231254</TextBox>
-            <TextBox>1231254</TextBox>
-            <TextBox>1231254</TextBox>
-            <TextBox>1231254</TextBox>
-        </StackPanel>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+    
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <TextBlock Text="Name:" FontWeight="Bold" />
+                <TextBlock Text="{Binding selectedRestaurant.name}" />
+            </StackPanel>
+    
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <TextBlock Text="Address:" FontWeight="Bold" />
+                <TextBlock Text="{Binding selectedRestaurant.address}" />
+            </StackPanel>
+    
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBlock Text="Cost:" FontWeight="Bold" />
+                <TextBlock Text="{Binding selectedRestaurant.cost}" />
+            </StackPanel>
+
+            <!-- Add more StackPanels and Grid.Column definitions for additional attributes -->
+        </Grid>
+
+
+
+
+
     </Grid>
 </Page>

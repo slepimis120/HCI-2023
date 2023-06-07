@@ -19,11 +19,21 @@ using MongoDB.Bson;
 namespace HCI_Tim_15_2023.GUI;
 public partial class RestaurantCrudPage : Page
 {
+    public Restaurant selectedRestaurant { get; set; }
     public RestaurantCrudPage()
     {
         InitializeComponent();
         var restaurants = GetRestaurantsFromDB();
         restaurantsDataGrid.ItemsSource = restaurants;
+        selectedRestaurant = new Restaurant("123", 0.0, 0.0, "Sample Address", "Sample Name", 10);
+        DataContext = this;
+    }
+    private void RestaurantsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        selectedRestaurant = (Restaurant)restaurantsDataGrid.SelectedItem;
+    
+        DataContext = null;
+        DataContext = this;
     }
 
     private List<Restaurant> GetFilteredRestaurantsFromDB(string searchTerm)
@@ -62,6 +72,28 @@ public partial class RestaurantCrudPage : Page
 
         return restaurants;
     }
+    private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+    {
+        TextBox textBox = (TextBox)sender;
+        if (textBox.Text == "Search")
+        {
+            textBox.Text = string.Empty;
+            textBox.Foreground = Brushes.Black;
+            textBox.Opacity = 1.0;
+        }
+    }
+    
+    private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+    {
+        TextBox textBox = (TextBox)sender;
+        if (string.IsNullOrWhiteSpace(textBox.Text))
+        {
+            textBox.Text = "Search";
+            textBox.Foreground = Brushes.Gray;
+            textBox.Opacity = 0.5;
+        }
+    }
+
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
@@ -72,7 +104,10 @@ public partial class RestaurantCrudPage : Page
         string searchTerm = searchTextBox.Text;
 
         var filteredRestaurants = GetFilteredRestaurantsFromDB(searchTerm);
-
-        restaurantsDataGrid.ItemsSource = filteredRestaurants;
+        if (filteredRestaurants.Count != 0)
+        {
+            restaurantsDataGrid.ItemsSource = filteredRestaurants;
+        }
+        
     }
 }
