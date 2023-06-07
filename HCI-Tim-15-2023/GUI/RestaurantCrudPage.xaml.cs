@@ -20,9 +20,12 @@ namespace HCI_Tim_15_2023.GUI;
 public partial class RestaurantCrudPage : Page
 {
     public Restaurant selectedRestaurant { get; set; }
+
+    public bool IsReadOnly { get; set; }
     public RestaurantCrudPage()
     {
         InitializeComponent();
+        IsReadOnly = true;
         var restaurants = GetRestaurantsFromDB();
         restaurantsDataGrid.ItemsSource = restaurants;
         selectedRestaurant = new Restaurant("123", 0.0, 0.0, "Sample Address", "Sample Name", 10);
@@ -109,5 +112,25 @@ public partial class RestaurantCrudPage : Page
             restaurantsDataGrid.ItemsSource = filteredRestaurants;
         }
         
+    }
+
+    private void EditButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (IsReadOnly)
+        {
+            editButton.Content = "Cancel";
+            IsReadOnly = false;
+            DataContext = null;
+            DataContext = this;
+            confirmButton.IsEnabled = true;
+        }else
+        {
+            editButton.Content = "Edit";
+            IsReadOnly = true;
+            DataContext = null;
+            DataContext = this;
+            confirmButton.IsEnabled = false;
+        }
+
     }
 }
