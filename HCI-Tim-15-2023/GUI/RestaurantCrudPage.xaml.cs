@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -97,11 +98,71 @@ public partial class RestaurantCrudPage : Page
             textBox.Opacity = 0.5;
         }
     }
+    private async Task SetCoordinatesFromAddress(Restaurant restaurant)
+    {
+        string apiUrl = "https://nominatim.openstreetmap.org/search?format=json&street=" +
+                        Uri.EscapeDataString(restaurant.address) + "+&city=" + "Belgrade";
+
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Invalid address.");
+            }
+        }
+    }
 
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
+        RestaurantDialog dialog = new RestaurantDialog();
+
+        bool? result = dialog.ShowDialog();
+
+        if (result == true)
+        {
+            string connectionString = "mongodb://localhost:27017";
+            string databaseName = "hci";
+            string collectionName = "restaurants";
+
+            var client = new MongoClient(connectionString);
+
+            var database = client.GetDatabase(databaseName);
+            var collection = database.GetCollection<Restaurant>(collectionName);
+            string name = dialog.NameTextBox.Text;
+            string address = dialog.AddressTextBox.Text;
+            
+            int cost;
+            if (!int.TryParse(dialog.CostTextBox.Text, out cost))
+            {
+                MessageBox.Show("Invalid cost value. Please enter a valid integer.");
+                return;
+            }
+
+            Restaurant newRestaurant = new Restaurant
+            {
+                name = name,
+                address = address,
+                cost = cost,
+                id = GenerateUniqueID(collection)
+            };
+            SetCoordinatesFromAddress(newRestaurant);
+
+            collection.InsertOne(newRestaurant);
+            var restaurants = GetRestaurantsFromDB();
+            restaurantsDataGrid.ItemsSource = restaurants;
+            MessageBox.Show("Restaurant added successfully!");
+        }
     }
+
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -113,6 +174,21 @@ public partial class RestaurantCrudPage : Page
             restaurantsDataGrid.ItemsSource = filteredRestaurants;
         }
         
+    }private string GenerateUniqueID(IMongoCollection<Restaurant> collection)
+    {
+        string newId;
+        bool idExists;
+
+        do
+        {
+            int randomNumber = new Random().Next(100000, 999999);
+            newId = randomNumber.ToString();
+
+            var idFilter = Builders<Restaurant>.Filter.Eq(r => r.id, newId);
+            idExists = collection.Find(idFilter).Any();
+        } while (idExists);
+
+        return newId;
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
