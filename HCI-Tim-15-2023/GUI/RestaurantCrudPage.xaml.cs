@@ -33,6 +33,7 @@ public partial class RestaurantCrudPage : Page
     }
     private void RestaurantsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        IsReadOnly = true;
         selectedRestaurant = (Restaurant)restaurantsDataGrid.SelectedItem;
     
         DataContext = null;
@@ -133,4 +134,52 @@ public partial class RestaurantCrudPage : Page
         }
 
     }
+
+    private void ConfirmButton_OnClickButton_Click(object sender, RoutedEventArgs e)
+    {
+        string newName = nameTextBox.Text;
+        string newAddress = addressTextBox.Text;
+        int newCost;
+        string restaurantId = selectedRestaurant.id;
+        if (!int.TryParse(costTextBox.Text, out newCost))
+        {
+            MessageBox.Show("Invalid cost value.");
+            return;
+        }
+        if (newName.Length == 0 || newAddress.Length == 0 || newCost <= 0)
+        {
+            MessageBox.Show("Input fields can't be empty!");
+            return;
+        }
+
+        FilterDefinition<Restaurant> filter = Builders<Restaurant>.Filter.Eq(r => r.id, restaurantId);
+
+
+        UpdateDefinition<Restaurant> update = Builders<Restaurant>.Update
+            .Set(r => r.name, newName)
+            .Set(r => r.address, newAddress)
+            .Set(r => r.cost, newCost);
+
+        string connectionString = "mongodb://localhost:27017";
+        string databaseName = "hci";
+        string collectionName = "restaurants";
+
+        var client = new MongoClient(connectionString);
+
+        var database = client.GetDatabase(databaseName);
+        var collection = database.GetCollection<Restaurant>(collectionName);
+        var result = collection.UpdateOne(filter, update);
+
+        if (result.ModifiedCount > 0)
+        {
+            // Update was successful
+            MessageBox.Show("Restaurant updated successfully!");
+        }
+        else
+        {
+            // Update did not find a matching document
+            MessageBox.Show("No restaurant found with the given ID.");
+        }
+    }
+
 }
