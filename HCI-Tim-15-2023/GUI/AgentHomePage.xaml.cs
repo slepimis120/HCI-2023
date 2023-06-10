@@ -1,6 +1,7 @@
 ﻿using HCI_Tim_15_2023.GUI.Pregledi;
 using System.Windows;
 using System.Windows.Controls;
+using HCI_Tim_15_2023.GUI.CRUD;
 
 namespace HCI_Tim_15_2023.GUI;
 public partial class AgentHomePage : Page

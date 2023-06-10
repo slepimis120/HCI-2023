@@ -19,7 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
 using Newtonsoft.Json;
-namespace HCI_Tim_15_2023.GUI;
+namespace HCI_Tim_15_2023.GUI.CRUD;
 public partial class RestaurantCrudPage : Page
 {
     public Restaurant selectedRestaurant { get; set; }
