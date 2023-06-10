@@ -2,9 +2,11 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,8 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
-
-namespace HCI_Tim_15_2023.GUI;
+using Newtonsoft.Json;
+namespace HCI_Tim_15_2023.GUI.CRUD;
 public partial class RestaurantCrudPage : Page
 {
     public Restaurant selectedRestaurant { get; set; }
@@ -29,7 +31,7 @@ public partial class RestaurantCrudPage : Page
         IsReadOnly = true;
         var restaurants = GetRestaurantsFromDB();
         restaurantsDataGrid.ItemsSource = restaurants;
-        selectedRestaurant = new Restaurant("123", 0.0, 0.0, "Sample Address", "Sample Name", 10);
+        // SelectedAccomodation = new Restaurant("123", 0.0, 0.0, "Sample Address", "Sample Name", 10);
         DataContext = this;
     }
     private void RestaurantsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,7 +100,13 @@ public partial class RestaurantCrudPage : Page
             textBox.Opacity = 0.5;
         }
     }
-    private async Task SetCoordinatesFromAddress(Restaurant restaurant)
+    public class GeocodingResult
+    {
+        public string lat { get; set; }
+        public string lon { get; set; }
+    }
+
+    private async Task<bool> SetCoordinatesFromAddress(Restaurant restaurant)
     {
         string apiUrl = "https://nominatim.openstreetmap.org/search?format=json&street=" +
                         Uri.EscapeDataString(restaurant.address) + "+&city=" + "Belgrade";
@@ -107,23 +115,40 @@ public partial class RestaurantCrudPage : Page
         {
             try
             {
+                client.DefaultRequestHeaders.Add("User-Agent", "My-User-Agent");
                 HttpResponseMessage response = await client.GetAsync(apiUrl);
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
+                var results = JsonConvert.DeserializeObject<List<GeocodingResult>>(responseBody);
+                if (results.Count > 0)
+                {
+                    var firstResult = results[0];
+                    double latitude = double.Parse(firstResult.lat, CultureInfo.InvariantCulture);
+                    double longitude = double.Parse(firstResult.lon, CultureInfo.InvariantCulture);
+
+
+                    restaurant.lat = latitude;
+                    restaurant.lon = longitude;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
             }
             catch (HttpRequestException)
             {
-                MessageBox.Show("Invalid address.");
+                return false;
             }
         }
     }
 
 
-    private void AddButton_Click(object sender, RoutedEventArgs e)
+    private async void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        RestaurantDialog dialog = new RestaurantDialog();
+        CreateLocationDialog dialog = new CreateLocationDialog();
 
         bool? result = dialog.ShowDialog();
 
@@ -139,7 +164,7 @@ public partial class RestaurantCrudPage : Page
             var collection = database.GetCollection<Restaurant>(collectionName);
             string name = dialog.NameTextBox.Text;
             string address = dialog.AddressTextBox.Text;
-            
+
             int cost;
             if (!int.TryParse(dialog.CostTextBox.Text, out cost))
             {
@@ -154,14 +179,23 @@ public partial class RestaurantCrudPage : Page
                 cost = cost,
                 id = GenerateUniqueID(collection)
             };
-            SetCoordinatesFromAddress(newRestaurant);
 
-            collection.InsertOne(newRestaurant);
-            var restaurants = GetRestaurantsFromDB();
-            restaurantsDataGrid.ItemsSource = restaurants;
-            MessageBox.Show("Restaurant added successfully!");
+            bool isAddressValid = await SetCoordinatesFromAddress(newRestaurant);
+
+            if (isAddressValid)
+            {
+                collection.InsertOne(newRestaurant);
+                var restaurants = GetRestaurantsFromDB();
+                restaurantsDataGrid.ItemsSource = restaurants;
+                MessageBox.Show("Restaurant added successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Invalid address. Restaurant not added.");
+            }
         }
     }
+
 
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -255,6 +289,40 @@ public partial class RestaurantCrudPage : Page
         {
             // Update did not find a matching document
             MessageBox.Show("No restaurant found with the given ID.");
+        }
+    }
+
+    private void DeleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (selectedRestaurant != null)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this restaurant?", "Confirmation", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                string connectionString = "mongodb://localhost:27017";
+                string databaseName = "hci";
+                string collectionName = "restaurants";
+
+                var client = new MongoClient(connectionString);
+
+                var database = client.GetDatabase(databaseName);
+                var collection = database.GetCollection<Restaurant>(collectionName);
+                var filter = Builders<Restaurant>.Filter.Eq(r => r.id, selectedRestaurant.id);
+
+                var resultDelete = collection.DeleteOne(filter);
+
+                if (resultDelete.DeletedCount > 0)
+                {
+                    MessageBox.Show("Restaurant deleted successfully!");
+
+                    var restaurantsFromDb = GetRestaurantsFromDB();
+                    restaurantsDataGrid.ItemsSource = restaurantsFromDb;
+                }
+                else
+                {
+                    MessageBox.Show("No restaurant found with the given ID.");
+                }
+            }
         }
     }
 
