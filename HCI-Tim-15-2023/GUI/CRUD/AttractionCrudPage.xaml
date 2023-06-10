@@ -1,4 +1,4 @@
-﻿<Page x:Class="HCI_Tim_15_2023.GUI.CRUD.RestaurantCrudPage"
+﻿<Page x:Class="HCI_Tim_15_2023.GUI.CRUD.AttractionCrudPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -7,7 +7,7 @@
       xmlns:model="clr-namespace:HCI_Tim_15_2023.Model"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RestaurantCrudPage">
+      Title="AttractionCrudPage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -31,9 +31,9 @@
 
 
 
-        <DataGrid Grid.Row="1" x:Name="restaurantsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
+        <DataGrid Grid.Row="1" x:Name="attractionDataGrid" AutoGenerateColumns="False" CanUserAddRows="False"
                   IsReadOnly="True"
-                  SelectionChanged="RestaurantsDataGrid_SelectionChanged"
+                  SelectionChanged="AttractionDataGrid_SelectionChanged"
                   HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,20">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="auto" />
@@ -59,32 +59,32 @@
 
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Name:" FontWeight="Bold" />
-                <TextBox x:Name="nameTextBox"  Text="{Binding selectedRestaurant.name}"  IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 0"/>
+                <TextBox x:Name="nameTextBox"  Text="{Binding SelectedAttraction.name}"  IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 0"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Address:" FontWeight="Bold" />
-                <TextBox x:Name="addressTextBox"  Text="{Binding selectedRestaurant.address}" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 0"/>
+                <TextBox x:Name="addressTextBox"  Text="{Binding SelectedAttraction.address}" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 0"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Cost:" FontWeight="Bold" />
-                <TextBox x:Name="costTextBox"  Text="{Binding selectedRestaurant.cost}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 0"/>
+                <TextBox x:Name="costTextBox"  Text="{Binding SelectedAttraction.cost}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 0"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Latitude:" FontWeight="Bold" />
-                <TextBox x:Name="latTextBox"  Text="{Binding selectedRestaurant.lat}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 0"/>
+                <TextBox x:Name="latTextBox"  Text="{Binding SelectedAttraction.lat}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 0"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Text="Longitude:" FontWeight="Bold" />
-                <TextBox x:Name="lonTextBox"  Text="{Binding selectedRestaurant.lon}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 0"/>
+                <TextBox x:Name="lonTextBox"  Text="{Binding SelectedAttraction.lon}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 0"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Text="ID:" FontWeight="Bold" />
-                <TextBox Text="{Binding selectedRestaurant.id}" IsReadOnly="True" Width="100" Margin="10, 0"/>
+                <TextBox Text="{Binding SelectedAttraction.id}" IsReadOnly="True" Width="100" Margin="10, 0"/>
             </StackPanel>
             <Button x:Name="editButton" Grid.Row="3" Grid.Column="1" Margin="10, 10" Click="EditButton_Click" MinHeight="30">Edit</Button>
             <Button x:Name="deleteButton" Grid.Row="3" Grid.Column="3" Margin="10, 10" Click="DeleteButton_Click" MinHeight="30">Delete</Button>

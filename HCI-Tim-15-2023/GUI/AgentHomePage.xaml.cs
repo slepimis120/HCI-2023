@@ -15,6 +15,10 @@ public partial class AgentHomePage : Page
     {
         this.NavigationService.Navigate(new RestaurantCrudPage());
     }
+    private void OpenAccomodationCRUD(object sender, RoutedEventArgs e)
+    {
+        this.NavigationService.Navigate(new AccomodationCrudPage());
+    }
 
     private void OpenAgentMonthlySoldTravelViewPage(object sender, RoutedEventArgs e)
     {
@@ -29,5 +33,10 @@ public partial class AgentHomePage : Page
     private void LogOut(object sender, RoutedEventArgs e)
     {
         this.NavigationService.Navigate(new LogInPage());
+    }
+
+    private void OpenAttractionCRUD(object sender, RoutedEventArgs e)
+    {
+        this.NavigationService.Navigate(new AttractionCrudPage());
     }
 }

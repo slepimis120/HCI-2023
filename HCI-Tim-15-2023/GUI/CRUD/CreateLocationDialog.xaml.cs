@@ -3,9 +3,9 @@ using System.Windows.Controls;
 
 namespace HCI_Tim_15_2023.GUI.CRUD
 {
-    public partial class RestaurantDialog : Window
+    public partial class CreateLocationDialog : Window
     {
-        public RestaurantDialog()
+        public CreateLocationDialog()
         {
             InitializeComponent();
         }

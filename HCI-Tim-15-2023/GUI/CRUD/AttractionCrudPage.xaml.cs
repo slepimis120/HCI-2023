@@ -19,69 +19,72 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
 using Newtonsoft.Json;
-namespace HCI_Tim_15_2023.GUI.CRUD;
-public partial class RestaurantCrudPage : Page
-{
-    public Restaurant selectedRestaurant { get; set; }
 
+namespace HCI_Tim_15_2023.GUI.CRUD;
+
+public partial class AttractionCrudPage : Page
+{
+    public Attraction SelectedAttraction { get; set; }
     public bool IsReadOnly { get; set; }
-    public RestaurantCrudPage()
+
+    public AttractionCrudPage()
     {
         InitializeComponent();
         IsReadOnly = true;
-        var restaurants = GetRestaurantsFromDB();
-        restaurantsDataGrid.ItemsSource = restaurants;
-        // SelectedAccomodation = new Restaurant("123", 0.0, 0.0, "Sample Address", "Sample Name", 10);
+        var attractions = GetAttractionsFromDB();
+        attractionDataGrid.ItemsSource = attractions;
         DataContext = this;
     }
-    private void RestaurantsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+    private void AttractionDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         IsReadOnly = true;
-        selectedRestaurant = (Restaurant)restaurantsDataGrid.SelectedItem;
-    
+        SelectedAttraction = (Attraction) attractionDataGrid.SelectedItem;
         DataContext = null;
         DataContext = this;
     }
 
-    private List<Restaurant> GetFilteredRestaurantsFromDB(string searchTerm)
+    private List<Attraction> GetFilteredAttractionsFromDB(string searchTerm)
     {
         string connectionString = "mongodb://localhost:27017";
         string databaseName = "hci";
-        string collectionName = "restaurants";
+        string collectionName = "attractions";
 
         var client = new MongoClient(connectionString);
 
         var database = client.GetDatabase(databaseName);
-        var collection = database.GetCollection<Restaurant>(collectionName);
+        var collection = database.GetCollection<Attraction>(collectionName);
 
-        var filterBuilder = Builders<Restaurant>.Filter;
+        var filterBuilder = Builders<Attraction>.Filter;
         var filter = filterBuilder.Or(
             filterBuilder.Regex(r => r.name, new BsonRegularExpression(searchTerm, "i")),
             filterBuilder.Regex(r => r.address, new BsonRegularExpression(searchTerm, "i"))
         );
 
-        var filteredRestaurants = collection.Find(filter).ToList();
+        var filteredAttractions = collection.Find(filter).ToList();
 
-        return filteredRestaurants;
+        return filteredAttractions;
     }
-    private List<Restaurant> GetRestaurantsFromDB()
+
+    private List<Attraction> GetAttractionsFromDB()
     {
         string connectionString = "mongodb://localhost:27017";
         string databaseName = "hci";
-        string collectionName = "restaurants";
+        string collectionName = "attractions";
 
         var client = new MongoClient(connectionString);
 
         var database = client.GetDatabase(databaseName);
-        var collection = database.GetCollection<Restaurant>(collectionName);
-        var filter = Builders<Restaurant>.Filter.Empty;
-        var restaurants = collection.Find(filter).ToList();
+        var collection = database.GetCollection<Attraction>(collectionName);
+        var filter = Builders<Attraction>.Filter.Empty;
+        var attractions = collection.Find(filter).ToList();
 
-        return restaurants;
+        return attractions;
     }
+
     private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
     {
-        TextBox textBox = (TextBox)sender;
+        TextBox textBox = (TextBox) sender;
         if (textBox.Text == "Search")
         {
             textBox.Text = string.Empty;
@@ -89,10 +92,10 @@ public partial class RestaurantCrudPage : Page
             textBox.Opacity = 1.0;
         }
     }
-    
+
     private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
     {
-        TextBox textBox = (TextBox)sender;
+        TextBox textBox = (TextBox) sender;
         if (string.IsNullOrWhiteSpace(textBox.Text))
         {
             textBox.Text = "Search";
@@ -100,16 +103,17 @@ public partial class RestaurantCrudPage : Page
             textBox.Opacity = 0.5;
         }
     }
+
     public class GeocodingResult
     {
         public string lat { get; set; }
         public string lon { get; set; }
     }
 
-    private async Task<bool> SetCoordinatesFromAddress(Restaurant restaurant)
+    private async Task<bool> SetCoordinatesFromAddress(Attraction attraction)
     {
         string apiUrl = "https://nominatim.openstreetmap.org/search?format=json&street=" +
-                        Uri.EscapeDataString(restaurant.address) + "+&city=" + "Belgrade";
+                        Uri.EscapeDataString(attraction.address) + "+&city=" + "Belgrade";
 
         using (HttpClient client = new HttpClient())
         {
@@ -127,16 +131,14 @@ public partial class RestaurantCrudPage : Page
                     double latitude = double.Parse(firstResult.lat, CultureInfo.InvariantCulture);
                     double longitude = double.Parse(firstResult.lon, CultureInfo.InvariantCulture);
 
-
-                    restaurant.lat = latitude;
-                    restaurant.lon = longitude;
+                    attraction.lat = latitude;
+                    attraction.lon = longitude;
                     return true;
                 }
                 else
                 {
                     return false;
                 }
-
             }
             catch (HttpRequestException)
             {
@@ -144,7 +146,6 @@ public partial class RestaurantCrudPage : Page
             }
         }
     }
-
 
     private async void AddButton_Click(object sender, RoutedEventArgs e)
     {
@@ -156,12 +157,12 @@ public partial class RestaurantCrudPage : Page
         {
             string connectionString = "mongodb://localhost:27017";
             string databaseName = "hci";
-            string collectionName = "restaurants";
+            string collectionName = "attractions";
 
             var client = new MongoClient(connectionString);
 
             var database = client.GetDatabase(databaseName);
-            var collection = database.GetCollection<Restaurant>(collectionName);
+            var collection = database.GetCollection<Attraction>(collectionName);
             string name = dialog.NameTextBox.Text;
             string address = dialog.AddressTextBox.Text;
 
@@ -172,7 +173,7 @@ public partial class RestaurantCrudPage : Page
                 return;
             }
 
-            Restaurant newRestaurant = new Restaurant
+            Attraction newAttraction = new Attraction
             {
                 name = name,
                 address = address,
@@ -180,35 +181,34 @@ public partial class RestaurantCrudPage : Page
                 id = GenerateUniqueID(collection)
             };
 
-            bool isAddressValid = await SetCoordinatesFromAddress(newRestaurant);
+            bool isAddressValid = await SetCoordinatesFromAddress(newAttraction);
 
             if (isAddressValid)
             {
-                collection.InsertOne(newRestaurant);
-                var restaurants = GetRestaurantsFromDB();
-                restaurantsDataGrid.ItemsSource = restaurants;
-                MessageBox.Show("Restaurant added successfully!");
+                collection.InsertOne(newAttraction);
+                var attractionsFromDb = GetAttractionsFromDB();
+                attractionDataGrid.ItemsSource = attractionsFromDb;
+                MessageBox.Show("Attraction added successfully!");
             }
             else
             {
-                MessageBox.Show("Invalid address. Restaurant not added.");
+                MessageBox.Show("Invalid address. Attraction not added.");
             }
         }
     }
-
-
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
         string searchTerm = searchTextBox.Text;
 
-        var filteredRestaurants = GetFilteredRestaurantsFromDB(searchTerm);
-        if (filteredRestaurants.Count != 0)
+        var filteredAttractionsFromDb = GetFilteredAttractionsFromDB(searchTerm);
+        if (filteredAttractionsFromDb.Count != 0)
         {
-            restaurantsDataGrid.ItemsSource = filteredRestaurants;
+            attractionDataGrid.ItemsSource = filteredAttractionsFromDb;
         }
-        
-    }private string GenerateUniqueID(IMongoCollection<Restaurant> collection)
+    }
+
+    private string GenerateUniqueID(IMongoCollection<Attraction> collection)
     {
         string newId;
         bool idExists;
@@ -218,7 +218,7 @@ public partial class RestaurantCrudPage : Page
             int randomNumber = new Random().Next(100000, 999999);
             newId = randomNumber.ToString();
 
-            var idFilter = Builders<Restaurant>.Filter.Eq(r => r.id, newId);
+            var idFilter = Builders<Attraction>.Filter.Eq(r => r.id, newId);
             idExists = collection.Find(idFilter).Any();
         } while (idExists);
 
@@ -234,7 +234,8 @@ public partial class RestaurantCrudPage : Page
             DataContext = null;
             DataContext = this;
             confirmButton.IsEnabled = true;
-        }else
+        }
+        else
         {
             editButton.Content = "Edit";
             IsReadOnly = true;
@@ -242,7 +243,6 @@ public partial class RestaurantCrudPage : Page
             DataContext = this;
             confirmButton.IsEnabled = false;
         }
-
     }
 
     private void ConfirmButton_OnClickButton_Click(object sender, RoutedEventArgs e)
@@ -250,77 +250,78 @@ public partial class RestaurantCrudPage : Page
         string newName = nameTextBox.Text;
         string newAddress = addressTextBox.Text;
         int newCost;
-        string restaurantId = selectedRestaurant.id;
+        string attractionId = SelectedAttraction.id;
+
         if (!int.TryParse(costTextBox.Text, out newCost))
         {
             MessageBox.Show("Invalid cost value.");
             return;
         }
+
         if (newName.Length == 0 || newAddress.Length == 0 || newCost <= 0)
         {
             MessageBox.Show("Input fields can't be empty!");
             return;
         }
 
-        FilterDefinition<Restaurant> filter = Builders<Restaurant>.Filter.Eq(r => r.id, restaurantId);
+        FilterDefinition<Attraction> filter = Builders<Attraction>.Filter.Eq(r => r.id, attractionId);
 
-
-        UpdateDefinition<Restaurant> update = Builders<Restaurant>.Update
+        UpdateDefinition<Attraction> update = Builders<Attraction>.Update
             .Set(r => r.name, newName)
             .Set(r => r.address, newAddress)
             .Set(r => r.cost, newCost);
 
         string connectionString = "mongodb://localhost:27017";
         string databaseName = "hci";
-        string collectionName = "restaurants";
+        string collectionName = "attractions";
 
         var client = new MongoClient(connectionString);
 
         var database = client.GetDatabase(databaseName);
-        var collection = database.GetCollection<Restaurant>(collectionName);
+        var collection = database.GetCollection<Attraction>(collectionName);
         var result = collection.UpdateOne(filter, update);
 
         if (result.ModifiedCount > 0)
         {
             // Update was successful
-            MessageBox.Show("Restaurant updated successfully!");
+            MessageBox.Show("Attraction updated successfully!");
         }
         else
         {
             // Update did not find a matching document
-            MessageBox.Show("No restaurant found with the given ID.");
+            MessageBox.Show("No attraction found with the given ID.");
         }
     }
-
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
-        if (selectedRestaurant != null)
+        if (SelectedAttraction != null)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this restaurant?", "Confirmation", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this attraction?", "Confirmation", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 string connectionString = "mongodb://localhost:27017";
                 string databaseName = "hci";
-                string collectionName = "restaurants";
+                string collectionName = "attractions";
 
                 var client = new MongoClient(connectionString);
 
                 var database = client.GetDatabase(databaseName);
-                var collection = database.GetCollection<Restaurant>(collectionName);
-                var filter = Builders<Restaurant>.Filter.Eq(r => r.id, selectedRestaurant.id);
+                var collection = database.GetCollection<Attraction>(collectionName);
+                var filter = Builders<Attraction>.Filter.Eq(r => r.id, SelectedAttraction.id);
 
                 var resultDelete = collection.DeleteOne(filter);
 
                 if (resultDelete.DeletedCount > 0)
                 {
-                    MessageBox.Show("Restaurant deleted successfully!");
+                    MessageBox.Show("Attraction deleted successfully!");
 
-                    var restaurantsFromDb = GetRestaurantsFromDB();
-                    restaurantsDataGrid.ItemsSource = restaurantsFromDb;
+                    // Refresh the data grid
+                    var attractionsFromDb = GetAttractionsFromDB();
+                    attractionDataGrid.ItemsSource = attractionsFromDb;
                 }
                 else
                 {
-                    MessageBox.Show("No restaurant found with the given ID.");
+                    MessageBox.Show("No attraction found with the given ID.");
                 }
             }
         }
