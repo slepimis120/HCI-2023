@@ -39,4 +39,9 @@ public partial class AgentHomePage : Page
     {
         this.NavigationService.Navigate(new AttractionCrudPage());
     }
+
+    private void OpenLocationCRUD(object sender, RoutedEventArgs e)
+    {
+        this.NavigationService.Navigate(new TravelCrudPage());
+    }
 }

@@ -7,6 +7,42 @@
         mc:Ignorable="d"
         Title="TravelCreateDialog" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" Grid.Row="0" ItemsSource="{Binding Locations}" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding id}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="{Binding name}" />
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding address}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                        <TextBlock Text=")" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Locations2}" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding id}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="{Binding name}" />
+                        <TextBlock Text=" (" />
+                        <TextBlock Text="{Binding address}" TextDecorations="Underline" Foreground="Blue" Cursor="Hand" />
+                        <TextBlock Text=")" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </Grid>
 </Window>
