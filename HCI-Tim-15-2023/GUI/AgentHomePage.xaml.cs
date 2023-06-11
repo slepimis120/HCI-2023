@@ -1,4 +1,5 @@
 ﻿using HCI_Tim_15_2023.GUI.Pregledi;
+using HCI_Tim_15_2023.Model;
 using System.Windows;
 using System.Windows.Controls;
 using HCI_Tim_15_2023.GUI.CRUD;
@@ -6,9 +7,12 @@ using HCI_Tim_15_2023.GUI.CRUD;
 namespace HCI_Tim_15_2023.GUI;
 public partial class AgentHomePage : Page
 {
-    public AgentHomePage()
+    public User loggedUser;
+
+    public AgentHomePage(User user)
     {
         InitializeComponent();
+        this.loggedUser = user;
     }
 
     private void OpenRestaurantCRUD(object sender, RoutedEventArgs e)
