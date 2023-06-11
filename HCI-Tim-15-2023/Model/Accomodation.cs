@@ -2,7 +2,6 @@
 
 public class Accomodation : Location
 {
-    public int cost { get; set; }
     public Accomodation()
     {
     }

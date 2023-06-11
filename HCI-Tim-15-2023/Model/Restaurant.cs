@@ -3,7 +3,6 @@
 public class Restaurant : Location
 {
 
-    public int cost { get; set; }
 
     public Restaurant()
     {
