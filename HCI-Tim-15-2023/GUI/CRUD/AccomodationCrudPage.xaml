@@ -39,6 +39,7 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" Width="auto" />
                 <DataGridTextColumn Header="Name" Binding="{Binding name}" Width="*" />
                 <DataGridTextColumn Header="Address" Binding="{Binding address}" Width="*" />
+                <DataGridTextColumn Header="Cost" Binding="{Binding cost}" Width="auto" />
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Top">
