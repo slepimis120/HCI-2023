@@ -20,6 +20,29 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" x:Name="txtName" FontSize="30" FontStretch="Expanded">Name:</TextBlock>
+                    <TextBlock Grid.Row="1" x:Name="txtDistance" FontSize="20">Distance:</TextBlock>
+                    <TextBlock Grid.Row="2" x:Name="txtPrice" FontSize="20">Price:</TextBlock>
+                    <TextBlock Grid.Row="3" x:Name="txtLocations" FontSize="20">Locations:</TextBlock>
+                </Grid>
+                <ListBox Grid.Column="1" Name="LocationList" ScrollViewer.CanContentScroll="False">
+                </ListBox>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

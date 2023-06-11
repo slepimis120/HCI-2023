@@ -22,19 +22,31 @@ public partial class ClientTravelViewPage : Page
 
     private void LoadTravels()
     {
-        List<Location> locations = new List<Location>();
+        travels.Clear();
+
         Location location1 = new Location();
         Location location2 = new Location();
+        Location location3 = new Location();
         location1.lat = 13.2;
         location1.lon = 7.33;
         location2.lat = 25.4;
         location2.lon = 12.7;
-        locations.Add(location1);
-        locations.Add(location2);
+        location3.lat = 65.7;
+        location3.lon = 5.3;
 
-        Travel travel1 = new Travel("Travel1", "Ilija", locations);
-        Travel travel2 = new Travel("Travel2", "Relja", locations);
-        Travel travel3 = new Travel("Travel3", "Sime", locations);
+        List<Location> locations1 = new List<Location>();
+        List<Location> locations2 = new List<Location>();
+        List<Location> locations3 = new List<Location>();
+        locations1.Add(location1);
+        locations2.Add(location1);
+        locations2.Add(location2);
+        locations3.Add(location1);
+        locations3.Add(location2);
+        locations3.Add(location3);
+
+        Travel travel1 = new Travel("Travel1", "Ilija", locations1);
+        Travel travel2 = new Travel("Travel2", "Relja", locations2);
+        Travel travel3 = new Travel("Travel3", "Sime", locations3);
         travels.Add(travel1);
         travels.Add(travel2);
         travels.Add(travel3);
@@ -46,41 +58,42 @@ public partial class ClientTravelViewPage : Page
 
         foreach(Travel travel in travels)
         {
-            int distance = 0;
-            for(int i = 1; i < travel.locations.Count; i++)
-            {
-                double x1, x2, y1, y2;
-                x1 = travel.locations[i - 1].lat;
-                y1 = travel.locations[i - 1].lon;
-                x2 = travel.locations[i].lat;
-                y2 = travel.locations[i].lon;
-                distance += (int) (Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2)) * 1.41);
-            }
 
             TextBlock textBlock1 = new TextBlock();
             TextBlock textBlock2 = new TextBlock();
             TextBlock textBlock3 = new TextBlock();
+            TextBlock textBlock4 = new TextBlock();
+            textBlock1.FontSize = 20;
+            textBlock2.FontSize = 15;
+            textBlock3.FontSize = 15;
+            textBlock4.FontSize = 15;
             textBlock1.Text = travel.name;
-            textBlock2.Text = "Distance: " + distance + "m";
+            textBlock2.Text = "Distance: " + travel.Distance() + "m";
             textBlock3.Text = "Locations: " + travel.locations.Count;
+            textBlock4.Text = "Price: ";// + travel.price;
 
             Grid grid = new Grid();
             RowDefinition gridRow1 = new RowDefinition();
-            gridRow1.Height = new GridLength(1, GridUnitType.Star);
+            gridRow1.Height = new GridLength(2, GridUnitType.Star);
             RowDefinition gridRow2 = new RowDefinition();
             gridRow2.Height = new GridLength(1, GridUnitType.Star);
             RowDefinition gridRow3 = new RowDefinition();
             gridRow3.Height = new GridLength(1, GridUnitType.Star);
+            RowDefinition gridRow4 = new RowDefinition();
+            gridRow4.Height = new GridLength(1, GridUnitType.Star);
             grid.RowDefinitions.Add(gridRow1);
             grid.RowDefinitions.Add(gridRow2);
             grid.RowDefinitions.Add(gridRow3);
+            grid.RowDefinitions.Add(gridRow4);
             Grid.SetRow(textBlock1, 0);
             Grid.SetRow(textBlock2, 1);
             Grid.SetRow(textBlock3, 2);
+            Grid.SetRow(textBlock4, 3);
 
             grid.Children.Add(textBlock1);
             grid.Children.Add(textBlock2);
             grid.Children.Add(textBlock3);
+            grid.Children.Add(textBlock4);
 
             ListBoxItem item = new ListBoxItem();
             item.Content = grid;
@@ -101,10 +114,30 @@ public partial class ClientTravelViewPage : Page
             selectedTravel.BorderBrush = Brushes.Blue;
             selectedTravel.SetValue(BackgroundProperty, Brushes.LightSkyBlue);
         }
+
         selectedTravel = sender as ListBoxItem;
         selectedTravel.BorderBrush = Brushes.DarkOrange;
         selectedTravel.BorderThickness = new Thickness(4);
         selectedTravel.SetValue(BackgroundProperty, Brushes.Orange);
         selectedTravel.IsSelected = false;
+
+        UpdateMap();
+        UpdateSelectedTravel();
+    }
+
+    private void UpdateMap()
+    {
+
+    }
+
+    private void UpdateSelectedTravel()
+    {
+        Travel travel = travels[TravelList.Items.IndexOf(selectedTravel)];
+        txtName.Text = "Name: " + travel.name;
+        txtDistance.Text = "Distance: " + travel.Distance() + "m";
+        txtPrice.Text = "Price: ";
+        txtLocations.Text = "Locations: " + travel.locations.Count;
+
+
     }
 }

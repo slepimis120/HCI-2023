@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace HCI_Tim_15_2023.Model;
 
@@ -18,5 +20,18 @@ public class Travel
     {
     }
 
-
+    public int Distance()
+    {
+        int distance = 0;
+        for (int i = 1; i < this.locations.Count; i++)
+        {
+            double x1, x2, y1, y2;
+            x1 = this.locations[i - 1].lat;
+            y1 = this.locations[i - 1].lon;
+            x2 = this.locations[i].lat;
+            y2 = this.locations[i].lon;
+            distance += (int)(Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2)) * 1.41);
+        }
+        return distance;
+    }
 }
