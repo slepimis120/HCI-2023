@@ -1,7 +1,8 @@
-﻿using HCI_Tim_15_2023.Model;
+using HCI_Tim_15_2023.Model;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -63,14 +64,29 @@ namespace HCI_Tim_15_2023.GUI
 
             var database = client.GetDatabase(databaseName);
             var collection = database.GetCollection<User>(collectionName);
-            int cost;
 
-            User newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Text, roles.CLIENT);
+            ComboBoxItem typeItem = (ComboBoxItem)Role.SelectedItem;
+            string value = typeItem.Content.ToString();
+            User newUser;
+            if (Username.Text == "" || Password.Text == "")
+            {
+                MessageBox.Show("Fields are empty!");
+            }
+            else
+            {
+                if (value == "CLIENT")
+                {
+                    newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Text, roles.CLIENT);
+                }
+                else
+                {
+                    newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Text, roles.ADMIN);
+                }
+                collection.InsertOne(newUser);
+                MessageBox.Show("User added successfully!");
 
-            collection.InsertOne(newUser);
-            MessageBox.Show("Account created successfully!");
-
-            this.NavigationService.Navigate(new LogInPage());
+                this.NavigationService.Navigate(new LogInPage());
+            }
         }
     }
 }

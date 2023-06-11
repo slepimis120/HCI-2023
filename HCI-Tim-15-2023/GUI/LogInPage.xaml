@@ -9,11 +9,47 @@
       Title="LogInPage">
 
     <Grid>
-        <StackPanel>
-            <TextBox TextWrapping="Wrap" Text="Username" Name="Username"/>
-            <TextBox TextWrapping="Wrap" Text="Password" Name="Password"/>
+        <Grid.Resources >
+            <Style TargetType="Border" >
+                <Setter Property="Padding" Value="5,5,5,5" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Username:" FontWeight="Bold"/>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1">
+            <TextBox TextWrapping="Wrap" Name="Username" />
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" >
+            <TextBlock Text="Password:" FontWeight="Bold" />
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1">
+            <TextBox TextWrapping="Wrap" Name="Password" />
+        </Border>
+
+        <Border Grid.Row="3" Grid.Column="0">
+            <Button Click="RegisterClient" >Create a new account!</Button>
+        </Border>
+
+        <Border Grid.Row="3" Grid.Column="1">
             <Button Click="Login">Login</Button>
-            <Button Click="RegisterClient">Create a new account!</Button>
-        </StackPanel>
+        </Border>
+        
+        
     </Grid>
 </Page>

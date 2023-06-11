@@ -9,13 +9,52 @@
       Title="RegisterPage">
 
     <Grid>
+        <Grid.Resources >
+            <Style TargetType="Border" >
+                <Setter Property="Padding" Value="5,5,5,5" />
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBox TextWrapping="Wrap" Text="Username" Name="Username" Grid.Row="0"/>
-        <TextBox TextWrapping="Wrap" Text="Password" Name="Password" Grid.Row="1"/>
-        <Button Click="CreateAccount" Grid.Row="2">Create an account!</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Username:" FontWeight="Bold"/>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1">
+            <TextBox TextWrapping="Wrap" Name="Username" />
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="0" >
+            <TextBlock Text="Password:" FontWeight="Bold" />
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1">
+            <TextBox TextWrapping="Wrap" Name="Password" />
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="0" >
+            <TextBlock Text="Role:" FontWeight="Bold" />
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="1">
+            <ComboBox Name="Role">
+                <ComboBoxItem IsSelected="True">CLIENT</ComboBoxItem>
+                <ComboBoxItem >ADMIN</ComboBoxItem>
+            </ComboBox>
+        </Border>
+        
+        <Border Grid.Row="3" Grid.Column="1">
+            <Button Click="CreateAccount">Create a new User!</Button>
+        </Border>
     </Grid>
 </Page>
