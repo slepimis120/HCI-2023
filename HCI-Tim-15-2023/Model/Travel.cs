@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace HCI_Tim_15_2023.Model;
 
@@ -19,6 +20,8 @@ public class Travel
     public Travel()
     {
     }
+
+    public int cost() => locations.Sum(location => location.cost);
 
     public int Distance()
     {
