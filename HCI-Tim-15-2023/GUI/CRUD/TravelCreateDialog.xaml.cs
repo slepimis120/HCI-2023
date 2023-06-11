@@ -136,11 +136,23 @@ public partial class TravelCreateDialog : Window
 
     private void ConfirmButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
-    }
+        string name = nameTextBox.Text;
+        List<Location> locations = new List<Location>(Locations2);
 
+        // Create the travel object
+        Travel createdTravel = new Travel
+        {
+            name = name,
+            locations = locations
+        };
+
+        CreatedTravel = createdTravel; 
+
+        DialogResult = true;
+    }
+    public Travel CreatedTravel { get; private set; }
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        DialogResult = false;
     }
 }

@@ -100,15 +100,20 @@ public partial class TravelCrudPage : Page
 
         if (result == true)
         {
+            Travel createdTravel = dialog.CreatedTravel;
             string connectionString = "mongodb://localhost:27017";
             string databaseName = "hci";
             string collectionName = "travels";
-
+           
             var client = new MongoClient(connectionString);
 
             var database = client.GetDatabase(databaseName);
             var collection = database.GetCollection<Travel>(collectionName);
-            
+            createdTravel.id = GenerateUniqueID(collection);
+            collection.InsertOne(createdTravel);
+            var travelssFromDb = GetTravelsFromDB();
+            travelDataGrid.ItemsSource = travelssFromDb;
+            MessageBox.Show("Travel added successfully!");
         }
     }
 
