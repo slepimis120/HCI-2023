@@ -36,10 +36,7 @@ namespace HCI_Tim_15_2023
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase("hci");
             var collection = database.GetCollection<User>("users");
-            
-            var users = collection.Find(Builders<User>.Filter.Empty).ToList();
-            
-            Console.WriteLine(users);
+
         }
     }
 }

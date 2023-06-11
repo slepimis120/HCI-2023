@@ -68,7 +68,7 @@ namespace HCI_Tim_15_2023.GUI
             User newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Text, roles.CLIENT);
 
             collection.InsertOne(newUser);
-            MessageBox.Show("Attraction added successfully!");
+            MessageBox.Show("Account created successfully!");
 
             this.NavigationService.Navigate(new LogInPage());
         }
