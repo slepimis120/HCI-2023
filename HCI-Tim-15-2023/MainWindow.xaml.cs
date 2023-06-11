@@ -27,6 +27,7 @@ namespace HCI_Tim_15_2023
         public static NavigationService NavigationService => ((MainWindow)Application.Current.MainWindow).MainFrame.NavigationService;
 
         public MainWindow()
+        //TODO add app icon
         {
             InitializeComponent();
             MainFrame.NavigationService.Navigate(new LogInPage());

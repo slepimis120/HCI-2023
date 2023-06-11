@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using HCI_Tim_15_2023.Model;
+using MongoDB.Driver;
 
 namespace HCI_Tim_15_2023.GUI.CRUD;
 
@@ -24,15 +25,52 @@ public partial class TravelCreateDialog : Window
 
     public ObservableCollection<Location> Locations2 { get; set; }
 
-    public TravelCreateDialog()
+    public TravelCreateDialog(Travel travel)
     {
         InitializeComponent();
-        this.DataContext = this;
         List<Location> l = new List<Location>();
+        if (travel is null)
+        {
+            l = getLocationsFromDB();
+        }
+        else
+        {
+            l = travel.locations;
+        }
+
+        this.DataContext = this;
 
 
         Locations = new ObservableCollection<Location>(l);
         Locations2 = new ObservableCollection<Location>();
+    }
+    
+    public List<Location> getLocationsFromDB()
+    {
+        string connectionString = "mongodb://localhost:27017";
+        string databaseName = "hci";
+        string collectionAccomodations = "accomodations";
+        string collectionRestaurants = "attractions";
+        string collectionAttractions = "restaurants";
+
+        var client = new MongoClient(connectionString);
+        var database = client.GetDatabase(databaseName);
+
+        var combinedLocations = new List<Location>();
+
+        var accomodationsCollection = database.GetCollection<Location>(collectionAccomodations);
+        var accomodations = accomodationsCollection.Find(_ => true).ToList();
+        combinedLocations.AddRange(accomodations);
+
+        var restaurantsCollection = database.GetCollection<Location>(collectionRestaurants);
+        var restaurants = restaurantsCollection.Find(_ => true).ToList();
+        combinedLocations.AddRange(restaurants);
+
+        var attractionsCollection = database.GetCollection<Location>(collectionAttractions);
+        var attractions = attractionsCollection.Find(_ => true).ToList();
+        combinedLocations.AddRange(attractions);
+
+        return combinedLocations;
     }
 
     private void ListView_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -94,5 +132,15 @@ public partial class TravelCreateDialog : Window
             Locations.Remove(location);
             Locations2.Add(location);
         }
+    }
+
+    private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
