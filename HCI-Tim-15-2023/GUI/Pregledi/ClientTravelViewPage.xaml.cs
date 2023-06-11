@@ -1,4 +1,5 @@
 ﻿using HCI_Tim_15_2023.Model;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,15 @@ public partial class ClientTravelViewPage : Page
     private void LoadTravels()
     {
         List<Location> locations = new List<Location>();
+        Location location1 = new Location();
+        Location location2 = new Location();
+        location1.lat = 13.2;
+        location1.lon = 7.33;
+        location2.lat = 25.4;
+        location2.lon = 12.7;
+        locations.Add(location1);
+        locations.Add(location2);
+
         Travel travel1 = new Travel("Travel1", "Ilija", locations);
         Travel travel2 = new Travel("Travel2", "Relja", locations);
         Travel travel3 = new Travel("Travel3", "Sime", locations);
@@ -36,11 +46,22 @@ public partial class ClientTravelViewPage : Page
 
         foreach(Travel travel in travels)
         {
+            int distance = 0;
+            for(int i = 1; i < travel.locations.Count; i++)
+            {
+                double x1, x2, y1, y2;
+                x1 = travel.locations[i - 1].lat;
+                y1 = travel.locations[i - 1].lon;
+                x2 = travel.locations[i].lat;
+                y2 = travel.locations[i].lon;
+                distance += (int) (Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2)) * 1.41);
+            }
+
             TextBlock textBlock1 = new TextBlock();
             TextBlock textBlock2 = new TextBlock();
             TextBlock textBlock3 = new TextBlock();
             textBlock1.Text = travel.name;
-            textBlock2.Text = "Distance: 750m";
+            textBlock2.Text = "Distance: " + distance + "m";
             textBlock3.Text = "Locations: " + travel.locations.Count;
 
             Grid grid = new Grid();
