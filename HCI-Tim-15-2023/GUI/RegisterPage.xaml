@@ -14,8 +14,8 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <TextBox TextWrapping="Wrap" Text="Username" Grid.Row="0"/>
-        <TextBox TextWrapping="Wrap" Text="Password" Grid.Row="1"/>
+        <TextBox TextWrapping="Wrap" Text="Username" Name="Username" Grid.Row="0"/>
+        <TextBox TextWrapping="Wrap" Text="Password" Name="Password" Grid.Row="1"/>
         <Button Click="CreateAccount" Grid.Row="2">Create an account!</Button>
     </Grid>
 </Page>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HCI_Tim_15_2023.GUI;
+using HCI_Tim_15_2023.Model;
 using MongoDB.Driver;
 
 namespace HCI_Tim_15_2023
@@ -35,19 +36,10 @@ namespace HCI_Tim_15_2023
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase("hci");
             var collection = database.GetCollection<User>("users");
-            var user = new User {Id = rnd.Next(1, 100000), Name = "Bob", Age = 30};
             
-            collection.InsertOne(user);
             var users = collection.Find(Builders<User>.Filter.Empty).ToList();
             
             Console.WriteLine(users);
         }
-    }
-
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Age { get; set; }
     }
 }
