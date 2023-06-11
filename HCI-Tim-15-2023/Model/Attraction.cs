@@ -2,7 +2,6 @@
 
 public class Attraction : Location
 {
-    public int cost { get; set; }
 
     public Attraction()
     {

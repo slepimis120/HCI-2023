@@ -11,5 +11,6 @@ public class Location
     public double lat { get; set; }
     public string address { get; set; }
     public string name { get; set; }
+    public int cost {get;set;}
 
 }
