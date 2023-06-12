@@ -15,17 +15,19 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Text="Name:" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
-        <TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" />
-        
-        <TextBlock Text="Address:" FontWeight="Bold" Grid.Row="1" Grid.Column="0" />
-        <TextBox x:Name="addressTextBox" Grid.Row="1" Grid.Column="1" />
-        
-        <TextBlock Text="Cost:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" />
-        <TextBox x:Name="costTextBox" Grid.Row="2" Grid.Column="1" />
-        
-        <Button Content="OK" Grid.Row="4" Grid.Column="0" Click="OkButton_Click" Margin="5" />
-        <Button Content="Cancel" Grid.Row="4" Grid.Column="1" Click="CancelButton_Click" Margin="5" />
+
+        <TextBlock Text="Name:" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Margin="10, 3" />
+        <TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" Margin="10, 3" />
+
+        <TextBlock Text="Address:" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="10, 3" />
+        <TextBox x:Name="addressTextBox" Grid.Row="1" Grid.Column="1" Margin="10, 3"/>
+
+        <TextBlock Text="Cost:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Margin="10, 3"/>
+        <TextBox x:Name="costTextBox" Grid.Row="2" Grid.Column="1" Margin="10, 3"/>
+
+        <Button Content="OK" Grid.Row="4" Grid.Column="0" Click="OkButton_Click" Margin="5" Background="#555555"
+                Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10" />
+        <Button Content="Cancel" Grid.Row="4" Grid.Column="1" Click="CancelButton_Click" Margin="5"
+                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10" />
     </Grid>
 </Window>

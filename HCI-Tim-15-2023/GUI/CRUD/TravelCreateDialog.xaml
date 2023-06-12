@@ -18,12 +18,12 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Grid.ColumnSpan="4"  Grid.Row="0" Orientation="Horizontal">
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="4"  Grid.Row="0" Orientation="Horizontal" Margin="10">
             <TextBlock Text="Name:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,5,0" />
             <TextBox x:Name="nameTextBox" Width="200" Margin="0,0,10,0" />
 
-            <Button Content="Confirm" Margin="0,0,10,0" Click="ConfirmButton_Click" HorizontalAlignment="Right"/>
-            <Button Content="Cancel" Click="CancelButton_Click"  HorizontalAlignment="Right"/>
+            <Button Content="Confirm" Margin="0,0,10,0" Click="ConfirmButton_Click" HorizontalAlignment="Right" Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10"/>
+            <Button Content="Cancel" Click="CancelButton_Click"  HorizontalAlignment="Right" Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10"/>
         </StackPanel>
         <TextBlock Text="Choose locations:" FontWeight="Bold" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
         <TextBlock Text="Locations selected:" FontWeight="Bold" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
