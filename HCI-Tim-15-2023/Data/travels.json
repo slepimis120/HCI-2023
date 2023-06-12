@@ -1,0 +1,202 @@
+[{
+  "_id": "614467",
+  "name": "Neka Putanja1",
+  "locations": [
+    {
+      "_id": "1",
+      "lon": 10,
+      "lat": 10.2,
+      "address": "Adresa 1",
+      "name": "Restoran 1",
+      "cost": 19
+    },
+    {
+      "_id": "568848",
+      "lon": 0,
+      "lat": 0,
+      "address": "Strazilovska",
+      "name": "1233",
+      "cost": 1
+    }
+  ]
+},{
+  "_id": "918265",
+  "name": "123",
+  "locations": [
+    {
+      "_id": "5",
+      "lon": 50,
+      "lat": 50.2,
+      "address": "Adresa 5",
+      "name": "Restoran 10",
+      "cost": 2157
+    },
+    {
+      "_id": "546147",
+      "lon": 20.4276742,
+      "lat": 44.8067864,
+      "address": "123",
+      "name": "aaaa",
+      "cost": 123
+    },
+    {
+      "_id": "408168",
+      "lon": 20.4276742,
+      "lat": 44.8067864,
+      "address": "123",
+      "name": "sdasdas",
+      "cost": 123
+    },
+    {
+      "_id": "332879",
+      "lon": 20.4814338,
+      "lat": 44.7630724,
+      "address": "Strazilovska",
+      "name": "ANFI",
+      "cost": 123
+    }
+  ]
+},{
+  "_id": "210976",
+  "name": "OOOOOOOO",
+  "locations": [
+    {
+      "_id": "590264",
+      "lon": 20.4276742,
+      "lat": 44.8067864,
+      "address": "123",
+      "name": "123",
+      "cost": 123
+    },
+    {
+      "_id": "3",
+      "lon": 30,
+      "lat": 30.2,
+      "address": "Adresa 3",
+      "name": "g",
+      "cost": 125
+    },
+    {
+      "_id": "663983",
+      "lon": 0,
+      "lat": 0,
+      "address": "Gandijeva",
+      "name": "123",
+      "cost": 21312
+    },
+    {
+      "_id": "614398",
+      "lon": 0,
+      "lat": 0,
+      "address": "asgsagihasg",
+      "name": "12312",
+      "cost": 12
+    },
+    {
+      "_id": "2",
+      "lon": 20,
+      "lat": 20.2,
+      "address": "Adresa 2",
+      "name": "Restoran 2",
+      "cost": 15
+    },
+    {
+      "_id": "4",
+      "lon": 40,
+      "lat": 40.2,
+      "address": "Adresa 4",
+      "name": "Restoran 4",
+      "cost": 2178
+    },
+    {
+      "_id": "319705",
+      "lon": 0,
+      "lat": 0,
+      "address": "Strazilovska",
+      "name": "123421",
+      "cost": 123
+    }
+  ]
+},{
+  "_id": "328292",
+  "name": "oo",
+  "locations": [
+    {
+      "_id": "590264",
+      "lon": 20.4276742,
+      "lat": 44.8067864,
+      "address": "123",
+      "name": "123",
+      "cost": 123
+    }
+  ]
+},{
+  "_id": "523608",
+  "name": "OOOOOOOO",
+  "locations": [
+    {
+      "_id": "590264",
+      "lon": 20.4276742,
+      "lat": 44.8067864,
+      "address": "123",
+      "name": "123",
+      "cost": 123
+    },
+    {
+      "_id": "3",
+      "lon": 30,
+      "lat": 30.2,
+      "address": "Adresa 3",
+      "name": "g",
+      "cost": 125
+    },
+    {
+      "_id": "663983",
+      "lon": 0,
+      "lat": 0,
+      "address": "Gandijeva",
+      "name": "123",
+      "cost": 21312
+    },
+    {
+      "_id": "614398",
+      "lon": 0,
+      "lat": 0,
+      "address": "asgsagihasg",
+      "name": "12312",
+      "cost": 12
+    },
+    {
+      "_id": "2",
+      "lon": 20,
+      "lat": 20.2,
+      "address": "Adresa 2",
+      "name": "Restoran 2",
+      "cost": 15
+    },
+    {
+      "_id": "319705",
+      "lon": 0,
+      "lat": 0,
+      "address": "Strazilovska",
+      "name": "123421",
+      "cost": 123
+    },
+    {
+      "_id": "5",
+      "lon": 50,
+      "lat": 50.2,
+      "address": "Adresa 5",
+      "name": "Restoran 10",
+      "cost": 2157
+    },
+    {
+      "_id": "1",
+      "lon": 10,
+      "lat": 10.2,
+      "address": "Adresa 1",
+      "name": "Restoran 1",
+      "cost": 19
+    }
+  ]
+}]
