@@ -25,34 +25,34 @@
             <Button Content="Confirm" Margin="0,0,10,0" Click="ConfirmButton_Click" HorizontalAlignment="Right" Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10"/>
             <Button Content="Cancel" Click="CancelButton_Click"  HorizontalAlignment="Right" Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10"/>
         </StackPanel>
-        <TextBlock Text="Choose locations:" FontWeight="Bold" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
-        <TextBlock Text="Locations selected:" FontWeight="Bold" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <TextBlock  Margin="5" Text="Choose locations:" FontWeight="Bold" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
+        <TextBlock Margin="5" Text="Locations selected:" FontWeight="Bold" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
 
-        <ListView Grid.Column="0" Grid.Row="2" ItemsSource="{Binding Locations}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" AllowDrop="True" MouseMove="ListView_MouseMove" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
+        <ListView Margin="5" Grid.Column="0" Grid.Row="2" ItemsSource="{Binding Locations}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" AllowDrop="True" MouseMove="ListView_MouseMove" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <TextBlock Text="{Binding id}" />
-                        <TextBlock Text=", " />
+                        <TextBlock Text="name: " />
                         <TextBlock Text="{Binding name}" FontWeight="Bold"/>
-                        <TextBlock Text=" (" />
+                        <TextBlock Text=", address: " />
                         <TextBlock Text="{Binding address}"  />
-                        <TextBlock Text=")" />
+                        <TextBlock Text=", cost: " />
+                        <TextBlock Text="{Binding cost}"  />
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Locations2}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
+        <ListView Margin="5" Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Locations2}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <TextBlock Text="{Binding id}"  />
-                        <TextBlock Text=", " />
+                        <TextBlock Text="name: " />
                         <TextBlock Text="{Binding name}" FontWeight="Bold"/>
-                        <TextBlock Text=" (" />
+                        <TextBlock Text=", address: " />
                         <TextBlock Text="{Binding address}"  />
-                        <TextBlock Text=")" />
+                        <TextBlock Text=", cost: " />
+                        <TextBlock Text="{Binding cost}"  />
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
