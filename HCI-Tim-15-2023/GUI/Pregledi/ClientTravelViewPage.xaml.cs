@@ -1,5 +1,6 @@
 ﻿using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
 using HCI_Tim_15_2023.Model;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -21,11 +22,32 @@ public partial class ClientTravelViewPage : Page
         UpdateTravels();
     }
 
+    private List<Travel> GetTravelsFromDB()
+    {
+        string connectionString = "mongodb://localhost:27017";
+        string databaseName = "hci";
+        string collectionName = "travels";
+
+        var client = new MongoClient(connectionString);
+
+        var database = client.GetDatabase(databaseName);
+        var collection = database.GetCollection<Travel>(collectionName);
+        var filter = Builders<Travel>.Filter.Empty;
+        var travelsDB = collection.Find(filter).ToList();
+
+        return travelsDB;
+    }
+
     private void LoadTravels()
     {
         travels.Clear();
 
-        Restaurant location1 = new Restaurant();
+        foreach (Travel travel in GetTravelsFromDB())
+        {
+            travels.Add(travel);
+        }
+
+        /*Restaurant location1 = new Restaurant();
         Attraction location2 = new Attraction();
         Accomodation location3 = new Accomodation();
         location1.cost = 15;
@@ -56,7 +78,7 @@ public partial class ClientTravelViewPage : Page
         Travel travel3 = new Travel("Travel3", "Sime", locations3);
         travels.Add(travel1);
         travels.Add(travel2);
-        travels.Add(travel3);
+        travels.Add(travel3);*/
     }
 
     private void UpdateTravels()
