@@ -13,8 +13,33 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" Name="TravelList" ScrollViewer.CanContentScroll="False">
-        </ListBox>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0">Search:</TextBlock>
+                <TextBox Grid.Column="1" Margin="2" FontSize="10" TextChanged="Search"></TextBox>
+                <Button Grid.Column="2" Margin="2" FontSize="10" Click="Filter">Filter</Button>
+            </Grid>
+            <ListBox Grid.Row="1" Name="TravelList" ScrollViewer.CanContentScroll="False">
+            </ListBox>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Name="FilterDialog" Visibility="Hidden">
+                    <TextBlock>sbgrsdb</TextBlock>
+                </Grid>
+            </Grid>
+        </Grid>
         <Grid Grid.Column="1" Name="MapAndDetails">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>

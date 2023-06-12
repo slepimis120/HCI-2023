@@ -3,6 +3,7 @@ using HCI_Tim_15_2023.Model;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -21,7 +22,6 @@ public partial class ClientTravelViewPage : Page
         InitializeComponent();
 
         LoadTravels();
-        UpdateTravels();
     }
 
     private List<Travel> GetTravelsFromDB()
@@ -48,15 +48,19 @@ public partial class ClientTravelViewPage : Page
         {
             travels.Add(travel);
         }
+
+        UpdateTravels();
     }
 
     private void UpdateTravels()
     {
+        TravelList.Items.Clear();
+        ClearSelectedTravel();
+
         List<ListBoxItem> travelItems = new List<ListBoxItem>();
 
         foreach(Travel travel in travels)
         {
-
             TextBlock textBlock1 = new TextBlock();
             TextBlock textBlock2 = new TextBlock();
             TextBlock textBlock3 = new TextBlock();
@@ -154,8 +158,31 @@ public partial class ClientTravelViewPage : Page
         }
     }
 
+    private void ClearSelectedTravel()
+    {
+        txtName.Text = "Name:";
+        txtDistance.Text = "Distance:";
+        txtPrice.Text = "Price:";
+        txtLocations.Text = "Locations:";
+
+        LocationList.Items.Clear();
+    }
+
     private void Back(object sender, RoutedEventArgs e)
     {
         NavigationService.Navigate(new ClientHomePage(this.user));
+    }
+
+    private void Search(object sender, TextChangedEventArgs e)
+    {
+        LoadTravels();
+    }
+
+    private void Filter(object sender, RoutedEventArgs e)
+    {
+        if(FilterDialog.IsVisible)
+            FilterDialog.Visibility = Visibility.Hidden;
+        else
+            FilterDialog.Visibility = Visibility.Visible;
     }
 }
