@@ -90,25 +90,25 @@
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Name:" FontWeight="Bold" />
                 <TextBox x:Name="nameTextBox" Text="{Binding SelectedTravel.name}" IsReadOnly="{Binding IsReadOnly}"
-                         Width="200" Margin="10, 0" />
+                         Width="200" Margin="10, 2" />
             </StackPanel>
 
             <ScrollViewer Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Locations:" FontWeight="Bold" />
-                    <ListBox ItemsSource="{Binding SelectedTravel.locations}" Width="200" Margin="10,0" />
+                    <ListBox ItemsSource="{Binding SelectedTravel.locations}" Width="200" Margin="10,2" MaxHeight="100"/>
                 </StackPanel>
             </ScrollViewer>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Cost:" FontWeight="Bold" />
-                <TextBox x:Name="costTextBox" Text="" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 0" />
+                <TextBox x:Name="costTextBox" Text="" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 2" MaxHeight="40"/>
             </StackPanel>
 
 
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Text="ID:" FontWeight="Bold" />
-                <TextBox Text="{Binding SelectedTravel.id}" IsReadOnly="True" Width="200" Margin="10, 0" />
+                <TextBox Text="{Binding SelectedTravel.id}" IsReadOnly="True" Width="200" Margin="10, 2" MaxHeight="40"/>
             </StackPanel>
             <Button x:Name="editButton" Grid.Row="3" Grid.Column="1" Margin="10, 10" Click="EditButton_Click" MinHeight="50"
                     Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">
