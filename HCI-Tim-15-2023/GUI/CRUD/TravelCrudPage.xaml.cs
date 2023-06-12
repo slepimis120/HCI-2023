@@ -26,7 +26,7 @@ namespace HCI_Tim_15_2023.GUI.CRUD
         {
             if (value is Travel travel)
             {
-                return travel.cost();
+                return travel.Cost();
             }
 
             return 0;
@@ -78,7 +78,7 @@ namespace HCI_Tim_15_2023.GUI.CRUD
 
             if (SelectedTravel != null)
             {
-                costTextBox.Text = SelectedTravel.cost().ToString();
+                costTextBox.Text = SelectedTravel.Cost().ToString();
                 DataContext = null;
                 DataContext = this;
             }
@@ -186,8 +186,8 @@ namespace HCI_Tim_15_2023.GUI.CRUD
             var travels = GetTravelsFromDB();
 
             var filteredTravels = travels.Where(travel =>
-                travel.cost() >= minCost &&
-                travel.cost() <= maxCost &&
+                travel.Cost() >= minCost &&
+                travel.Cost() <= maxCost &&
                 travel.locations.Count >= minLoc &&
                 travel.locations.Count <= maxLoc
             ).ToList();

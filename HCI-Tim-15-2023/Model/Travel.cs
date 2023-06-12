@@ -21,7 +21,7 @@ public class Travel
     {
     }
 
-    public int cost() => locations.Sum(location => location.cost);
+    public int Cost() => locations.Sum(location => location.cost);
 
     public int Distance()
     {

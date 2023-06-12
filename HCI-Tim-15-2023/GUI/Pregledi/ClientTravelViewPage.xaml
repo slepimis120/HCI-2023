@@ -40,8 +40,15 @@
                     <TextBlock Grid.Row="2" x:Name="txtPrice" FontSize="20">Price:</TextBlock>
                     <TextBlock Grid.Row="3" x:Name="txtLocations" FontSize="20">Locations:</TextBlock>
                 </Grid>
-                <ListBox Grid.Column="1" Name="LocationList" ScrollViewer.CanContentScroll="False">
-                </ListBox>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="15">Locations:</TextBlock>
+                    <ListBox Grid.Row="1" Name="LocationList" ScrollViewer.CanContentScroll="False">
+                    </ListBox>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

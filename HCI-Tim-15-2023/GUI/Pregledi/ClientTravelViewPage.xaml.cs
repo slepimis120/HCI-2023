@@ -1,4 +1,5 @@
-﻿using HCI_Tim_15_2023.Model;
+﻿using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
+using HCI_Tim_15_2023.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -24,9 +25,15 @@ public partial class ClientTravelViewPage : Page
     {
         travels.Clear();
 
-        Location location1 = new Location();
-        Location location2 = new Location();
-        Location location3 = new Location();
+        Restaurant location1 = new Restaurant();
+        Attraction location2 = new Attraction();
+        Accomodation location3 = new Accomodation();
+        location1.cost = 15;
+        location2.cost = 37;
+        location3.cost = 23;
+        location1.name = "Ilija";
+        location2.name = "Relja";
+        location3.name = "Sime";
         location1.lat = 13.2;
         location1.lon = 7.33;
         location2.lat = 25.4;
@@ -70,7 +77,7 @@ public partial class ClientTravelViewPage : Page
             textBlock1.Text = travel.name;
             textBlock2.Text = "Distance: " + travel.Distance() + "m";
             textBlock3.Text = "Locations: " + travel.locations.Count;
-            textBlock4.Text = "Price: ";// + travel.price;
+            textBlock4.Text = "Price: " + travel.Cost();
 
             Grid grid = new Grid();
             RowDefinition gridRow1 = new RowDefinition();
@@ -132,12 +139,27 @@ public partial class ClientTravelViewPage : Page
 
     private void UpdateSelectedTravel()
     {
+        LocationList.Items.Clear();
+
         Travel travel = travels[TravelList.Items.IndexOf(selectedTravel)];
         txtName.Text = "Name: " + travel.name;
         txtDistance.Text = "Distance: " + travel.Distance() + "m";
-        txtPrice.Text = "Price: ";
+        txtPrice.Text = "Price: " + travel.Cost();
         txtLocations.Text = "Locations: " + travel.locations.Count;
 
+        foreach(Location location in travel.locations)
+        {
+            TextBlock textBlock = new TextBlock();
+            textBlock.FontSize = 20;
+            if(location is Restaurant)
+                textBlock.Text = "Restaurant: ";
+            if(location is Attraction)
+                textBlock.Text = "Attraction: ";
+            if(location is Accomodation)
+                textBlock.Text = "Accomodation: ";
+            textBlock.Text += location.name;
 
+            LocationList.Items.Add(textBlock);
+        }
     }
 }
