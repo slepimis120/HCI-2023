@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>General Help Page</h1>
+<h1>CRUD Help Page</h1>
 <ol><h2>Navigation:</h2>
     <li>Account:
         <ol>
@@ -16,7 +16,7 @@
     <li>CRUD:
         <ol>
             <li><a href="CRUD.htm">Restaurants/Accomodations/Attractions</a></li>
-            <li><a href="CRUD.htm">Travels</a></li>
+            <li><a href="travel.htm">Travels</a></li>
         </ol>
     </li>
     <li>Account:</li>
@@ -26,8 +26,60 @@
     <li>Account:</li>
     <li>Account:</li>
 </ol>
-<h3>
-    OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-</h3>
+<img src="CRUD.png"/>
+<ol>Sections:
+    <li><a href="#Search">Search</a></li>
+    <li><a href="#Add">Add</a></li>
+    <li><a href="#Table">Table</a></li>
+    <li><a href="#SelectedDisplay">SelectedDisplay</a></li>
+    <li><a href="#Edit">Edit</a></li>
+    <li><a href="#ConfirmEdit">ConfirmEdit</a></li>
+    <li><a href="#Delete">Delete</a></li>
+</ol>
+<h3 id="Search">Search</h3>
+<p>
+    Search is enabled on both the name and the address of a location.
+    Typing inside the search field automatically updates the <a href="#Table">table</a>.
+</p>
+<h3 id="Add">Add</h3>
+<p>
+    The add button opens the <a href="LocationCreateDialog.htm">create dialog</a>
+</p>
+<h3 id="Table">Table</h3>
+<p>
+    The table displays the id, name, address and cost of locations.
+    You can sort by any given value by clicking on the column header.
+    Clicking on an item in the table displays the full values of a location in <a href="#SelectedDisplay">the section
+    below</a>.
+
+</p>
+<h3 id="SelectedDisplay">SelectedDisplay</h3>
+<p>
+    The fields display the full information about a location.
+    Selecting different items in the table changes the values of the fields.
+    By clicking the <a href="#Edit">edit</a> button, it enables the input fields.
+</p>
+<h3 id="Edit">Edit</h3>
+<p>
+    Allows the editing of the input fields in the before mentioned section.
+    The fields cannot be left empty.
+    The cost field has to be a valid number.
+    Changes to the cancel button when clicked.
+<p>
+    Confirm changes by clicking the <a href="#ConfirmEdit">confirm button</a>.
+    Or cancel them by clicking the cancel button.
+</p>
+</p>
+<h3 id="ConfirmEdit">ConfirmEdit</h3>
+<p>
+    Confirms the changes made and updates the table.
+</p>
+<h3 id="Delete">Delete</h3>
+<p>
+    Deletes the selected location.
+    A location has to be selected in the table first in order for the button to work.
+</p>
+
+
 </body>
 </html>
