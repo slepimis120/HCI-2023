@@ -28,6 +28,8 @@ namespace HCI_Tim_15_2023
         public static NavigationService NavigationService =>
             ((MainWindow) Application.Current.MainWindow).MainFrame.NavigationService;
 
+        public User loggedUser;
+
         public MainWindow()
             //TODO add app icon
         {

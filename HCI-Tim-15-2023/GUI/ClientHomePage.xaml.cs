@@ -1,23 +1,21 @@
 ﻿using HCI_Tim_15_2023.GUI.CRUD;
 using HCI_Tim_15_2023.GUI.Pregledi;
 using HCI_Tim_15_2023.Model;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace HCI_Tim_15_2023.GUI;
-public partial class ClientHomePage : Page
-{
-    public User loggedUser;
+public partial class ClientHomePage : Page { 
 
-    public ClientHomePage(User user)
+    public ClientHomePage()
     {
         InitializeComponent();
-        this.loggedUser = user;
     }
 
     private void OpenClientTravelViewPage(object sender, RoutedEventArgs e)
     {
-        this.NavigationService.Navigate(new ClientTravelViewPage(this.loggedUser));
+        this.NavigationService.Navigate(new ClientTravelViewPage());
     }
 
     private void OpenClientBoughtTravelViewPage(object sender, RoutedEventArgs e)
