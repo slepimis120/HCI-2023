@@ -43,7 +43,8 @@
         </Border>
 
         <Border Grid.Row="2" Grid.Column="1">
-            <Button Click="ReserveTrip">Reserve a trip!</Button>
+            <Button Click="ReserveTrip" Margin="5"
+                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">Reserve a trip!</Button>
         </Border>
     </Grid>
 </Page>

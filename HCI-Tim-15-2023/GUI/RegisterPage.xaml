@@ -54,7 +54,8 @@
         </Border>
         
         <Border Grid.Row="3" Grid.Column="1">
-            <Button Click="CreateAccount">Create a new User!</Button>
+            <Button Click="CreateAccount" Margin="5"
+                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">Create a new User!</Button>
         </Border>
     </Grid>
 </Page>
