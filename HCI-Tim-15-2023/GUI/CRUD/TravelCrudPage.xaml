@@ -7,7 +7,7 @@
       xmlns:converters="clr-namespace:HCI_Tim_15_2023.GUI.CRUD"
 
       mc:Ignorable="d"
-      Title="TravelCrudPage" Height="450" Width="800">
+      Title="TravelCrudPage" Height="Auto" Width="Auto">
     <Page.Resources>
         <converters:CostConverter x:Key="CostConverter" />
         <converters:LocationsConverter x:Key="LocationConverter" />
@@ -17,8 +17,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid Margin="10">
@@ -41,16 +41,18 @@
                 <TextBox x:Name="minCost" Width="50" Text="0" Margin="10, 0" />
                 <TextBlock Text="MaxCost:"  Margin="0,0,5,0"/>
                 <TextBox x:Name="maxCost" Width="50" Text="999999" Margin="10, 0" />
-                <TextBlock Text="Min number of locations:"   Margin="0,0,5,0"/>
+                <TextBlock Text="Min locations:"   Margin="0,0,5,0"/>
                 <TextBox x:Name="minLoc" Width="50" Text="0" Margin="10, 0" />
-                <TextBlock Text="Max number of locations:"  Margin="0,0,5,0"/>
+                <TextBlock Text="Max locations:"  Margin="0,0,5,0"/>
                 <TextBox x:Name="maxLoc" Width="50" Text="999" Margin="10, 0" />
             </StackPanel>
 
             <Button Grid.Row="0" Grid.RowSpan="1" x:Name="addButton" Grid.Column="1" Content="Add"
-                    Click="AddButton_Click" Width="Auto" />
+                    Click="AddButton_Click" Width="Auto" 
+                    Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10"/>
             <Button Grid.Row="1" x:Name="filterButton" Grid.Column="1" Content="Filter" Margin="10, 5"
-                    Click="FilterButton_OnClick" Width="Auto" />
+                    Click="FilterButton_OnClick" Width="Auto" 
+                    Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10"/>
         </Grid>
 
 
@@ -88,35 +90,36 @@
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Name:" FontWeight="Bold" />
                 <TextBox x:Name="nameTextBox" Text="{Binding SelectedTravel.name}" IsReadOnly="{Binding IsReadOnly}"
-                         Width="200" Margin="10, 0" />
+                         Width="200" Margin="10, 2" />
             </StackPanel>
 
             <ScrollViewer Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Locations:" FontWeight="Bold" />
-                    <ListBox ItemsSource="{Binding SelectedTravel.locations}" Width="200" Margin="10,0" />
+                    <ListBox ItemsSource="{Binding SelectedTravel.locations}" Width="200" Margin="10,2" MaxHeight="100"/>
                 </StackPanel>
             </ScrollViewer>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Cost:" FontWeight="Bold" />
-                <TextBox x:Name="costTextBox" Text="" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 0" />
+                <TextBox x:Name="costTextBox" Text="" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 2" MaxHeight="40"/>
             </StackPanel>
 
 
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Text="ID:" FontWeight="Bold" />
-                <TextBox Text="{Binding SelectedTravel.id}" IsReadOnly="True" Width="200" Margin="10, 0" />
+                <TextBox Text="{Binding SelectedTravel.id}" IsReadOnly="True" Width="200" Margin="10, 2" MaxHeight="40"/>
             </StackPanel>
-            <Button x:Name="editButton" Grid.Row="3" Grid.Column="1" Margin="10, 10" Click="EditButton_Click"
-                    MinHeight="30">
+            <Button x:Name="editButton" Grid.Row="3" Grid.Column="1" Margin="10, 10" Click="EditButton_Click" MinHeight="50"
+                    Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">
                 Edit
             </Button>
-            <!-- <Button x:Name="deleteButton" Grid.Row="3" Grid.Column="3" Margin="10, 10" Click="DeleteButton_Click" MinHeight="30">Delete</Button> -->
-            <Button x:Name="deleteButton" Grid.Row="3" Grid.Column="2" Margin="10, 10" MinHeight="30"
-                    Click="DeleteButton_Click">
+
+            <Button x:Name="deleteButton" Grid.Row="3" Grid.Column="2" Margin="10, 10" MinHeight="50" Click="DeleteButton_Click"
+                    Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">
                 Delete
             </Button>
+
         </Grid>
 
 

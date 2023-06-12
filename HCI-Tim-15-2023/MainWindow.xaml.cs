@@ -69,7 +69,7 @@ namespace HCI_Tim_15_2023
                     htmlPage = "CRUD";
                     break;
                 case "TravelCrudPage":
-                    htmlPage = "Travel";
+                    htmlPage = "travel";
                     break;
                 default:
                     htmlPage = "index";
