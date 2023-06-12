@@ -164,7 +164,11 @@ public partial class RestaurantCrudPage : Page
             var collection = database.GetCollection<Restaurant>(collectionName);
             string name = dialog.NameTextBox.Text;
             string address = dialog.AddressTextBox.Text;
-
+            if (name == "" || address == "")
+            {
+                MessageBox.Show("Input fields can't be empty.");
+                return;
+            }
             int cost;
             if (!int.TryParse(dialog.CostTextBox.Text, out cost))
             {

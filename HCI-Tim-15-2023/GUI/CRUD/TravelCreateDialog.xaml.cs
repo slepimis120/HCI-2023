@@ -20,6 +20,7 @@ namespace HCI_Tim_15_2023.GUI.CRUD;
 public partial class TravelCreateDialog : Window
 {
     Point startPoint = new Point();
+    private string id = "";
 
     public ObservableCollection<Location> Locations { get; set; }
 
@@ -29,21 +30,56 @@ public partial class TravelCreateDialog : Window
     {
         InitializeComponent();
         List<Location> l = new List<Location>();
+        List<Location> l2 = new List<Location>();
         if (travel is null)
         {
             l = getLocationsFromDB();
         }
         else
         {
-            l = travel.locations;
+            id = travel.id;
+            nameTextBox.Text = travel.name;
+            l = getFilteredLocationsFromDB(travel.locations);
+            l2 = travel.locations;
         }
 
         this.DataContext = this;
 
 
         Locations = new ObservableCollection<Location>(l);
-        Locations2 = new ObservableCollection<Location>();
+        Locations2 = new ObservableCollection<Location>(l2);
     }
+    public List<Location> getFilteredLocationsFromDB(List<Location> travelLocations)
+    {
+        string connectionString = "mongodb://localhost:27017";
+        string databaseName = "hci";
+        string collectionAccomodations = "accomodations";
+        string collectionRestaurants = "attractions";
+        string collectionAttractions = "restaurants";
+
+        var client = new MongoClient(connectionString);
+        var database = client.GetDatabase(databaseName);
+
+        var combinedLocations = new List<Location>();
+
+        var accomodationsCollection = database.GetCollection<Location>(collectionAccomodations);
+        var accomodations = accomodationsCollection.Find(_ => true).ToList();
+        combinedLocations.AddRange(accomodations);
+
+        var restaurantsCollection = database.GetCollection<Location>(collectionRestaurants);
+        var restaurants = restaurantsCollection.Find(_ => true).ToList();
+        combinedLocations.AddRange(restaurants);
+
+        var attractionsCollection = database.GetCollection<Location>(collectionAttractions);
+        var attractions = attractionsCollection.Find(_ => true).ToList();
+        combinedLocations.AddRange(attractions);
+
+        // Remove locations already  in travel
+        var filteredLocations = combinedLocations.Where(loc => !travelLocations.Contains(loc)).ToList();
+
+        return filteredLocations;
+    }
+
     
     public List<Location> getLocationsFromDB()
     {
@@ -129,8 +165,16 @@ public partial class TravelCreateDialog : Window
         if (e.Data.GetDataPresent("myFormat"))
         {
             Location location = e.Data.GetData("myFormat") as Location;
-            Locations.Remove(location);
-            Locations2.Add(location);
+            if (Locations.Contains(location))
+            {
+                Locations.Remove(location);
+                Locations2.Add(location);
+            }
+            else if (Locations2.Contains(location))
+            {
+                Locations2.Remove(location);
+                Locations.Add(location);
+            }
         }
     }
 
@@ -143,9 +187,20 @@ public partial class TravelCreateDialog : Window
         Travel createdTravel = new Travel
         {
             name = name,
-            locations = locations
+            locations = locations,
+            id = id
+            
         };
-
+        if (createdTravel.name == "")
+        {
+            MessageBox.Show("Name can't be empty.");
+            return;
+        }
+        if (createdTravel.locations.Count == 0)
+        {
+            MessageBox.Show("You have to select at least 1 location.");
+            return;
+        }
         CreatedTravel = createdTravel; 
 
         DialogResult = true;

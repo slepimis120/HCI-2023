@@ -12,5 +12,20 @@ public class Location
     public string address { get; set; }
     public string name { get; set; }
     public int cost {get;set;}
+    public override string ToString()
+    {
+        return name;
+    }
+    public override bool Equals(object? obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        Location other = (Location)obj;
+        return id == other.id && lon == other.lon && lat == other.lat &&
+               address == other.address && name == other.name && cost == other.cost;
+    }
 
 }
