@@ -60,27 +60,27 @@
 
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Name:" FontWeight="Bold" />
-                <TextBox x:Name="nameTextBox"  Text="{Binding selectedRestaurant.name}"  IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 2"/>
+                <TextBox x:Name="nameTextBox"  Text="{Binding SelectedAccomodation.name}"  IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 2"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
                 <TextBlock Text="Address:" FontWeight="Bold" />
-                <TextBox x:Name="addressTextBox"  Text="{Binding selectedRestaurant.address}" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 2"/>
+                <TextBox x:Name="addressTextBox"  Text="{Binding SelectedAccomodation.address}" IsReadOnly="{Binding IsReadOnly}" Width="200" Margin="10, 2"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Cost:" FontWeight="Bold" />
-                <TextBox x:Name="costTextBox"  Text="{Binding selectedRestaurant.cost}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 2"/>
+                <TextBox x:Name="costTextBox"  Text="{Binding SelectedAccomodation.cost}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 2"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Latitude:" FontWeight="Bold" />
-                <TextBox x:Name="latTextBox"  Text="{Binding selectedRestaurant.lat}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 2"/>
+                <TextBox x:Name="latTextBox"  Text="{Binding SelectedAccomodation.lat}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 2"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Text="Longitude:" FontWeight="Bold" />
-                <TextBox x:Name="lonTextBox"  Text="{Binding selectedRestaurant.lon}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 2"/>
+                <TextBox x:Name="lonTextBox"  Text="{Binding SelectedAccomodation.lon}" IsReadOnly="{Binding IsReadOnly}" Width="100" Margin="10, 2"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="2" Orientation="Horizontal">
