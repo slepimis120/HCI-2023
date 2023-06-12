@@ -163,7 +163,11 @@ public partial class AccomodationCrudPage : Page
             var collection = database.GetCollection<Accomodation>(collectionName);
             string name = dialog.NameTextBox.Text;
             string address = dialog.AddressTextBox.Text;
-
+            if (name == "" || address == "")
+            {
+                MessageBox.Show("Input fields can't be empty.");
+                return;
+            }
             int cost;
             if (!int.TryParse(dialog.CostTextBox.Text, out cost))
             {

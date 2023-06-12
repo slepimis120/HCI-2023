@@ -28,7 +28,7 @@
         <TextBlock Text="Choose locations:" FontWeight="Bold" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" />
         <TextBlock Text="Locations selected:" FontWeight="Bold" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
 
-        <ListView Grid.Column="0" Grid.Row="2" ItemsSource="{Binding Locations}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove">
+        <ListView Grid.Column="0" Grid.Row="2" ItemsSource="{Binding Locations}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" AllowDrop="True" MouseMove="ListView_MouseMove" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -43,7 +43,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Locations2}" Grid.ColumnSpan="2" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
+        <ListView Grid.Column="2" Grid.Row="2" ItemsSource="{Binding Locations2}" Grid.ColumnSpan="2" PreviewMouseLeftButtonDown="ListView_PreviewMouseLeftButtonDown" MouseMove="ListView_MouseMove" AllowDrop="True" DragEnter="ListView_DragEnter" Drop="ListView_Drop">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
