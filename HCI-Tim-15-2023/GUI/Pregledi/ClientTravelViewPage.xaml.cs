@@ -46,39 +46,6 @@ public partial class ClientTravelViewPage : Page
         {
             travels.Add(travel);
         }
-
-        /*Restaurant location1 = new Restaurant();
-        Attraction location2 = new Attraction();
-        Accomodation location3 = new Accomodation();
-        location1.cost = 15;
-        location2.cost = 37;
-        location3.cost = 23;
-        location1.name = "Ilija";
-        location2.name = "Relja";
-        location3.name = "Sime";
-        location1.lat = 13.2;
-        location1.lon = 7.33;
-        location2.lat = 25.4;
-        location2.lon = 12.7;
-        location3.lat = 65.7;
-        location3.lon = 5.3;
-
-        List<Location> locations1 = new List<Location>();
-        List<Location> locations2 = new List<Location>();
-        List<Location> locations3 = new List<Location>();
-        locations1.Add(location1);
-        locations2.Add(location1);
-        locations2.Add(location2);
-        locations3.Add(location1);
-        locations3.Add(location2);
-        locations3.Add(location3);
-
-        Travel travel1 = new Travel("Travel1", "Ilija", locations1);
-        Travel travel2 = new Travel("Travel2", "Relja", locations2);
-        Travel travel3 = new Travel("Travel3", "Sime", locations3);
-        travels.Add(travel1);
-        travels.Add(travel2);
-        travels.Add(travel3);*/
     }
 
     private void UpdateTravels()
