@@ -44,7 +44,12 @@ namespace HCI_Tim_15_2023
         private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
-
+            Page currentPage = MainFrame.Content as Page;
+            if (currentPage != null)
+            {
+                string currentPageTitle = currentPage.Title;
+                Console.WriteLine(currentPageTitle);
+            }
             HelpProvider.ShowHelp("index", this);
         }
 
