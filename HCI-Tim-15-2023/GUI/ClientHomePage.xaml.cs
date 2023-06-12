@@ -17,7 +17,7 @@ public partial class ClientHomePage : Page
 
     private void OpenClientTravelViewPage(object sender, RoutedEventArgs e)
     {
-        this.NavigationService.Navigate(new ClientTravelViewPage());
+        this.NavigationService.Navigate(new ClientTravelViewPage(this.loggedUser));
     }
 
     private void OpenClientBoughtTravelViewPage(object sender, RoutedEventArgs e)

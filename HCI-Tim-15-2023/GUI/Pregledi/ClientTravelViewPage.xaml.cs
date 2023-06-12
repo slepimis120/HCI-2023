@@ -13,9 +13,11 @@ public partial class ClientTravelViewPage : Page
 {
     ListBoxItem selectedTravel = null;
     List<Travel> travels = new List<Travel>();
+    User user;
 
-    public ClientTravelViewPage()
+    public ClientTravelViewPage(User user)
     {
+        this.user = user;
         InitializeComponent();
 
         LoadTravels();
@@ -150,5 +152,10 @@ public partial class ClientTravelViewPage : Page
 
             LocationList.Items.Add(textBlock);
         }
+    }
+
+    private void Back(object sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new ClientHomePage(this.user));
     }
 }
