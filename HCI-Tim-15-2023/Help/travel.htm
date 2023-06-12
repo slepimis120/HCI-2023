@@ -1,0 +1,85 @@
+﻿<!DOCTYPE HTML PUBLIC>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Travel Help Page:</h1>
+<ol> <h2>Navigation:</h2>
+    <li>Account: <ol>
+        <li><a href="index.htm">Login</a></li>
+        <li><a href="index.htm">Register</a></li>
+    </ol>
+    </li>
+    <li>CRUD: <ol>
+        <li><a href="CRUD.htm">Restaurants/Accomodations/Attractions</a></li>
+
+        <li><a href="travel.htm">Travels</a></li>
+    </ol>
+    </li>
+    <li>Account:</li>
+    <li>Account:</li>
+    <li>Account:</li>
+    <li>Account:</li>
+    <li>Account:</li>
+    <li>Account:</li>
+</ol>
+<img src="Travel.png"/>
+<ol>Sections:
+    <li><a href="#Search">Search</a></li>
+    <li><a href="#Add">Add</a></li>
+    <li><a href="#FilterS">Filter settings</a></li>
+    <li><a href="#FilterButton">Filter button</a></li>
+    <li><a href="#Table">Table</a></li>
+    <li><a href="#SelectedDisplay">SelectedDisplay</a></li>
+    <li><a href="#Edit">Edit</a></li>
+    <li><a href="#Delete">Delete</a></li>
+</ol>
+<h3 id="Search">Search</h3>
+<p>
+    Searches the travels by name.
+    Typing inside the search field automatically updates the <a href="#Table">table</a>.
+</p>
+<h3 id="Add">Add</h3>
+<p>
+    The add button opens the <a href="TravelCreateDialog.htm">create dialog</a>
+</p>
+<h3 id="FilterS">Filter settings</h3>
+<p>
+    Allows the user to filter the table by cost and number of locations.
+    All inputs need to be valid numbers.
+    Complete the filtering and update the table by clicking the <a href="#FilterButton">Filter button</a>
+</p>
+<h3 id="FilterButton">Filter button</h3>
+<p>
+    Allows the user to filter the table by cost and number of locations.
+    Updates the table using the criteria in <a href="#FilterS">filter settings</a>.
+</p>
+<h3 id="Table">Table</h3>
+<p>
+    The table displays the id, name,cost, list of locations of travels.
+    You can sort by any given value by clicking on the column header.
+    Clicking on an item in the table displays the full values of a travel in <a href="#SelectedDisplay">the section
+    below</a>.
+
+</p>
+<h3 id="SelectedDisplay">Selected Display</h3>
+<p>
+    The fields display the full information about a travel.
+    Selecting different items in the table changes the values of the fields.
+    You can scroll through the list of locations.
+</p>
+<h3 id="Edit">Edit</h3>
+<p>
+    The edit button opens the <a href="TravelCreateDialog.htm">edit dialog</a>
+</p>
+
+<h3 id="Delete">Delete</h3>
+<p>
+    Deletes the selected travel.
+    A travel has to be selected in the table first in order for the button to work.
+</p>
+
+</body>
+</html>

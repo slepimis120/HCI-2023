@@ -18,7 +18,7 @@
             <RowDefinition Height="20*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="OpenRestaurantCRUD">Restaurants</Button>
+        <Button Grid.Row="0" Click="OpenRestaurantCRUD" >Restaurants</Button>
         <Button Grid.Row="1" Click="OpenAttractionCRUD">Attractions</Button>
         <Button Grid.Row="2" Click="OpenAccomodationCRUD">Accommodations</Button>
         <Button Grid.Row="3" Click="OpenLocationCRUD">Travels</Button>

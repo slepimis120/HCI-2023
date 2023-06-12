@@ -33,7 +33,7 @@ namespace HCI_Tim_15_2023
         {
             InitializeComponent();
             MainFrame.NavigationService.Navigate(new LogInPage());
-            
+
             Random rnd = new Random();
             string connectionString = "mongodb://localhost:27017";
             var client = new MongoClient(connectionString);
@@ -45,12 +45,38 @@ namespace HCI_Tim_15_2023
         {
             IInputElement focusedControl = FocusManager.GetFocusedElement(Application.Current.Windows[0]);
             Page currentPage = MainFrame.Content as Page;
-            if (currentPage != null)
+            String htmlPage;
+
+            string currentPageTitle = currentPage.Title;
+            htmlPage = DecideHelpPage(currentPageTitle);
+
+
+            HelpProvider.ShowHelp(htmlPage, this);
+        }
+
+        private string DecideHelpPage(String pageTitle)
+        {
+            string htmlPage;
+            switch (pageTitle)
             {
-                string currentPageTitle = currentPage.Title;
-                Console.WriteLine(currentPageTitle);
+                case "AccomodationCrudPage":
+                    htmlPage = "CRUD";
+                    break;
+                case "RestaurantCrudPage":
+                    htmlPage = "CRUD";
+                    break;
+                case "AttractionCrudPage":
+                    htmlPage = "CRUD";
+                    break;
+                case "TravelCrudPage":
+                    htmlPage = "travel";
+                    break;
+                default:
+                    htmlPage = "index";
+                    break;
             }
-            HelpProvider.ShowHelp("index", this);
+
+            return htmlPage;
         }
 
         public void doThings(string param)
