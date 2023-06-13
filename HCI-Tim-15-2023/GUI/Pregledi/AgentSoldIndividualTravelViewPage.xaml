@@ -24,8 +24,8 @@
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0">Search:</TextBlock>
-                <TextBox Grid.Column="1" Margin="2" FontSize="10" TextChanged="Search" Name="txtSearch"></TextBox>
+                <TextBlock Grid.Row="0">Travel:</TextBlock>
+                <ComboBox Grid.Column="1" Margin="2" FontSize="8" SelectionChanged="Search" Name="txtSearch"></ComboBox>
                 <Button Grid.Column="2" Margin="2" FontSize="10" Click="Filter">Filter</Button>
             </Grid>
             <ListBox Grid.Row="1" Name="TravelList" ScrollViewer.CanContentScroll="False">
@@ -96,11 +96,11 @@
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" x:Name="txtName" FontSize="30" FontStretch="Expanded">Name:</TextBlock>
+                    <TextBlock Grid.Row="0" x:Name="txtName" FontSize="30" FontStretch="Expanded">Client:</TextBlock>
                     <TextBlock Grid.Row="1" x:Name="txtDistance" FontSize="20">Distance:</TextBlock>
                     <TextBlock Grid.Row="2" x:Name="txtPrice" FontSize="20">Price:</TextBlock>
                     <TextBlock Grid.Row="3" x:Name="txtLocations" FontSize="20">Locations:</TextBlock>
-                    <TextBlock Grid.Row="4" x:Name="txtSold" FontSize="20">Sold:</TextBlock>
+                    <TextBlock Grid.Row="4" x:Name="txtDate" FontSize="20">Date:</TextBlock>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>

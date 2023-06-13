@@ -12,8 +12,8 @@ namespace HCI_Tim_15_2023.GUI.Pregledi;
 public partial class AgentSoldIndividualTravelViewPage : Page
 {
     private ListBoxItem selectedTravel = null;
-    private List<Travel> travels = new List<Travel>();
-    private List<int> bought = new List<int>();
+    private List<BoughtTravel> travels = new List<BoughtTravel>();
+    private List<string> ids = new List<string>();
 
     private int minPrice = 0;
     private int maxPrice = 99999999;
@@ -26,7 +26,7 @@ public partial class AgentSoldIndividualTravelViewPage : Page
     {
         InitializeComponent();
 
-        LoadTravels();
+        LoadSearch();
     }
 
     private List<Travel> GetTravelsFromDB()
@@ -61,27 +61,29 @@ public partial class AgentSoldIndividualTravelViewPage : Page
         return travelsDB;
     }
 
+    private void LoadSearch()
+    {
+        foreach(Travel travel in GetTravelsFromDB())
+        {
+            ids.Add(travel.id);
+            txtSearch.Items.Add(travel.name);
+        }
+    }
+
     private void LoadTravels()
     {
         travels.Clear();
-        bought.Clear();
 
-        foreach (Travel travel in GetTravelsFromDB())
+        foreach (BoughtTravel boughtTravel in GetBoughtTravelsFromDB())
         {
-            if (travel.name.Contains(txtSearch.Text)
+            Travel travel = boughtTravel.travel;
+            var window = (MainWindow)Application.Current.MainWindow;
+            User user = window.loggedUser;
+            if (boughtTravel.travel.id == ids[txtSearch.SelectedIndex]
                 && travel.Cost() >= minPrice && travel.Cost() <= maxPrice
                 && travel.Distance() >= minDistance && travel.Distance() <= maxDistance
                 && travel.locations.Count >= minLocations && travel.locations.Count <= maxLocations)
-            {
-                travels.Add(travel);
-                int b = 0;
-                foreach(BoughtTravel boughtTravel in GetBoughtTravelsFromDB())
-                {
-                    if (travel.id == boughtTravel.travel.id)
-                        b++;
-                }
-                bought.Add(b);
-            }
+                travels.Add(boughtTravel);
         }
 
         UpdateTravels();
@@ -95,8 +97,10 @@ public partial class AgentSoldIndividualTravelViewPage : Page
 
         List<ListBoxItem> travelItems = new List<ListBoxItem>();
 
-        foreach (Travel travel in travels)
+        foreach (BoughtTravel boughtTravel in travels)
         {
+            Travel travel = boughtTravel.travel;
+
             TextBlock textBlock1 = new TextBlock();
             TextBlock textBlock2 = new TextBlock();
             TextBlock textBlock3 = new TextBlock();
@@ -107,11 +111,11 @@ public partial class AgentSoldIndividualTravelViewPage : Page
             textBlock3.FontSize = 15;
             textBlock4.FontSize = 15;
             textBlock5.FontSize = 15;
-            textBlock1.Text = travel.name;
+            textBlock1.Text = boughtTravel.user.username;
             textBlock2.Text = "Distance: " + travel.Distance() + "m";
             textBlock3.Text = "Locations: " + travel.locations.Count;
             textBlock4.Text = "Price: " + travel.Cost();
-            textBlock5.Text = "Sold: " + bought[travels.IndexOf(travel)];
+            textBlock5.Text = "Date: " + boughtTravel.time.ToString("d/M/yy");
 
             Grid grid = new Grid();
             RowDefinition gridRow1 = new RowDefinition();
@@ -185,12 +189,13 @@ public partial class AgentSoldIndividualTravelViewPage : Page
     {
         LocationList.Items.Clear();
 
-        Travel travel = travels[TravelList.Items.IndexOf(selectedTravel)];
-        txtName.Text = "Name: " + travel.name;
+        BoughtTravel boughtTravel = travels[TravelList.Items.IndexOf(selectedTravel)];
+        Travel travel = boughtTravel.travel;
+        txtName.Text = "Client: " + boughtTravel.user.username;
         txtDistance.Text = "Distance: " + travel.Distance() + "m";
         txtPrice.Text = "Price: " + travel.Cost();
         txtLocations.Text = "Locations: " + travel.locations.Count;
-        txtSold.Text = "Sold: " + bought[TravelList.Items.IndexOf(selectedTravel)];
+        txtDate.Text = "Date: " + boughtTravel.time.ToString("d/M/yy");
 
         foreach (Location location in travel.locations)
         {
@@ -212,11 +217,11 @@ public partial class AgentSoldIndividualTravelViewPage : Page
     {
         selectedTravel = null;
 
-        txtName.Text = "Name:";
+        txtName.Text = "Client:";
         txtDistance.Text = "Distance:";
         txtPrice.Text = "Price:";
         txtLocations.Text = "Locations:";
-        txtSold.Text = "Sold:";
+        txtDate.Text = "Date:";
 
         LocationList.Items.Clear();
     }
@@ -226,7 +231,7 @@ public partial class AgentSoldIndividualTravelViewPage : Page
         NavigationService.Navigate(new AgentHomePage());
     }
 
-    private void Search(object sender, TextChangedEventArgs e)
+    private void Search(object sender, SelectionChangedEventArgs e)
     {
         LoadTravels();
     }
