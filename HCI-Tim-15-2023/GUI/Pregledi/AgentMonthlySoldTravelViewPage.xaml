@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HCI_Tim_15_2023.GUI.Pregledi"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AgentMonthlySoldTravelViewPage">
@@ -92,7 +93,7 @@
                 <Button Grid.Column="2" Margin="2" FontSize="10" Click="Back">Back</Button>
             </Grid>
             <Grid Grid.Row="1">
-
+                <m:Map x:Name="myMap" CredentialsProvider="QIJXheQLnzfzL7vDCkei~nTlonDVuM9rhy3FQCz8lsw~AqyvtlCUKC0FLINvOW6uBpIbrAuRswVPow-H5Yar-sNuXoz649YdTqSS7E0vwWt_" Mode="Aerial"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
