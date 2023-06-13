@@ -6,6 +6,7 @@
     <RootNamespace>HCI_Tim_15_2023</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>app.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,5 +18,4 @@
   <ItemGroup>
     <Folder Include="Data" />
   </ItemGroup>
-
 </Project>
