@@ -82,6 +82,18 @@ namespace HCI_Tim_15_2023
                 case "ReserveTrip":
                     htmlPage = "ReserveTrip";
                     break;
+                case "ClientTravelViewPage":
+                    htmlPage = "TravelView";
+                    break;
+                case "ClientBoughtTravelViewPage":
+                    htmlPage = "TravelView";
+                    break;
+                case "AgentMonthlySoldTravelViewPage":
+                    htmlPage = "TravelView";
+                    break;
+                case "AgentSoldIndividualTravelViewPage":
+                    htmlPage = "TravelView";
+                    break;
                 default:
                     htmlPage = "index";
                     break;

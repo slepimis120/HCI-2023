@@ -1,0 +1,63 @@
+﻿<!DOCTYPE HTML PUBLIC>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Login Help Page:</h1>
+    <ol>
+        <h2>Navigation:</h2>
+        <li>
+            Account:
+            <ol>
+                <li><a href="login.htm">Login</a></li>
+                <li><a href="register.htm">Register</a></li>
+            </ol>
+        </li>
+        <li>
+            CRUD:
+            <ol>
+                <li>
+                    <a href="CRUD.htm">Restaurants/Accomodations/Attractions</a><a href="LocationCreateDialog.htm">(Create)</a>
+                </li>
+                <li><a href="travel.htm">Travels <a href="TravelCreateDialog.htm">(Create)</a></a></li>
+                <li><a href="ReserveTrip.htm">Reserved Trips</a></li>
+            </ol>
+        </li>
+        <li>
+            Overview: <ol>
+                <li><a href="TravelView.htm">Travels overview</a></li>
+            </ol>
+        </li>
+    </ol>
+
+    <img src="TravelView.png" />
+    <ol>
+        Sections:
+        <li><a href="#SaF">Search and Filter</a></li>
+        <li><a href="#LT">Listed Travels</a></li>
+        <li><a href="#Map">Map</a></li>
+    </ol>
+
+    <h3 id="SaF">Search and Filter</h3>
+    <img src="Filter.png" />
+    <p>
+        Typing a text in the search bar will result in only the travels, that have that text in their name, to be shown.
+        This is helpful for finding a specific travel arrangement.<br /><br />
+        Clicking on the Filter burron opens the Filter dialog box. In it, you can set the minimum and maximum values of the travels you want to be shown.
+        Click Apply to apply the filters for to your search.<br /><br />
+        Clicking on the < and > buttons (if those are present) changes the month for displayed travels.
+    </p>
+    <h3 id="LT">Listed Travels</h3>
+    <p>
+        Selecting one of the listed travels on your left will display the details in the bottom of the screen, list the various locations in that travel in the bottom right
+        and show the travel route on the <a href="#Map">map</a>.<br /><br />
+        After selecting a listed travel, you will be able to click the Book this travel button in the bottom of the screen and go straight to <a href="ReserveTrip.htm">Reserved Trips</a>.
+    </p>
+    <h3 id="Map">Map</h3>
+    <p>
+        The map displays the locations (blue pins) and the route (orange lines) of the selected travel.
+    </p>
+</body>
+</html>
