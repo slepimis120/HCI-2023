@@ -68,8 +68,8 @@
         <Grid Grid.Column="1" Name="MapAndDetails">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="145"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -94,11 +94,13 @@
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="25"/>
+                        <RowDefinition Height="20"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" x:Name="txtName" FontSize="30" FontStretch="Expanded">Name:</TextBlock>
                     <TextBlock Grid.Row="1" x:Name="txtDistance" FontSize="20">Distance:</TextBlock>
                     <TextBlock Grid.Row="2" x:Name="txtPrice" FontSize="20">Price:</TextBlock>
                     <TextBlock Grid.Row="3" x:Name="txtLocations" FontSize="20">Locations:</TextBlock>
+                    <Button Grid.Row="4" Name="btnBook" Width="100"  Margin="2" FontSize="10" HorizontalAlignment="Left" Click="BookTravel" IsEnabled="False">Book this travel</Button>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>

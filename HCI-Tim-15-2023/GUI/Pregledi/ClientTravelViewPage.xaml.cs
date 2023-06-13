@@ -1,4 +1,5 @@
 ﻿using Amazon.Auth.AccessControlPolicy.ActionIdentifiers;
+using HCI_Tim_15_2023.GUI.CRUD;
 using HCI_Tim_15_2023.Model;
 using MongoDB.Driver;
 using System;
@@ -157,6 +158,8 @@ public partial class ClientTravelViewPage : Page
         txtPrice.Text = "Price: " + travel.Cost();
         txtLocations.Text = "Locations: " + travel.locations.Count;
 
+        btnBook.IsEnabled = true;
+
         foreach(Location location in travel.locations)
         {
             TextBlock textBlock = new TextBlock();
@@ -175,10 +178,14 @@ public partial class ClientTravelViewPage : Page
 
     private void ClearSelectedTravel()
     {
+        selectedTravel = null;
+
         txtName.Text = "Name:";
         txtDistance.Text = "Distance:";
         txtPrice.Text = "Price:";
         txtLocations.Text = "Locations:";
+
+        btnBook.IsEnabled = false;
 
         LocationList.Items.Clear();
     }
@@ -219,5 +226,10 @@ public partial class ClientTravelViewPage : Page
             maxLocations = 99999999;
 
         LoadTravels();
+    }
+
+    private void BookTravel(object sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new ReservationCreatePage());
     }
 }
