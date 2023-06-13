@@ -56,7 +56,7 @@ namespace HCI_Tim_15_2023
             HelpProvider.ShowHelp(htmlPage, this);
         }
 
-        private string DecideHelpPage(String pageTitle)
+        public string DecideHelpPage(String pageTitle)
         {
             string htmlPage;
             switch (pageTitle)

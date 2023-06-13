@@ -8,6 +8,7 @@ using System.Windows.Media;
 using Microsoft.Maps.MapControl.WPF;
 using Loc = Microsoft.Maps.MapControl.WPF.Location;
 using Location = HCI_Tim_15_2023.Model.Location;
+using HCI_Tim_15_2023.Help;
 
 namespace HCI_Tim_15_2023.GUI.Pregledi;
 
