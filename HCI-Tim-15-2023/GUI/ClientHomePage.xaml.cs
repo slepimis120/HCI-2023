@@ -6,8 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 
 namespace HCI_Tim_15_2023.GUI;
-public partial class ClientHomePage : Page { 
-
+public partial class ClientHomePage : Page
+{
     public ClientHomePage()
     {
         InitializeComponent();

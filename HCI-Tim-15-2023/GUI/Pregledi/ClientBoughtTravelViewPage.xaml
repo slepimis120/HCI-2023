@@ -9,6 +9,111 @@
       Title="ClientBoughtTravelViewPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0">Search:</TextBlock>
+                <TextBox Grid.Column="1" Margin="2" FontSize="10" TextChanged="Search" Name="txtSearch"></TextBox>
+                <Button Grid.Column="2" Margin="2" FontSize="10" Click="Filter">Filter</Button>
+            </Grid>
+            <ListBox Grid.Row="1" Name="TravelList" ScrollViewer.CanContentScroll="False">
+            </ListBox>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Name="FilterDialog" Visibility="Hidden" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Min. Price:</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtMinPrice"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Max. Price:</TextBlock>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtMaxPrice"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Min. Distance:</TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtMinDistance"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0">Max. Distance:</TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtMaxDistance"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0">Min. Locations:</TextBlock>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtMinLocations"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0">Max. Locations:</TextBlock>
+                    <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtMaxLocations"/>
+                    <Button Grid.Row="6" Grid.Column="0" Click="Apply" Margin="2">Apply</Button>
+                </Grid>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Name="MapAndDetails">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="170"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Margin="2" FontSize="10">?</Button>
+                <Button Grid.Column="2" Margin="2" FontSize="10" Click="Back">Back</Button>
+            </Grid>
+            <Grid Grid.Row="1">
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" x:Name="txtName" FontSize="30" FontStretch="Expanded">Name:</TextBlock>
+                    <TextBlock Grid.Row="1" x:Name="txtDistance" FontSize="20">Distance:</TextBlock>
+                    <TextBlock Grid.Row="2" x:Name="txtPrice" FontSize="20">Price:</TextBlock>
+                    <TextBlock Grid.Row="3" x:Name="txtLocations" FontSize="20">Locations:</TextBlock>
+                    <TextBlock Grid.Row="4" x:Name="txtDate" FontSize="20">Date:</TextBlock>
+                    <Button Grid.Row="5" Name="btnBook" Width="100"  Margin="2" FontSize="10" HorizontalAlignment="Left" Click="BookTravel" IsEnabled="False">Book this travel</Button>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontSize="15">Locations:</TextBlock>
+                    <ListBox Grid.Row="1" Name="LocationList" ScrollViewer.CanContentScroll="False">
+                    </ListBox>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
