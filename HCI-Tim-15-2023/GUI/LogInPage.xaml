@@ -43,11 +43,13 @@
         </Border>
 
         <Border Grid.Row="3" Grid.Column="0">
-            <Button Click="RegisterClient" >Create a new account!</Button>
+            <Button Click="RegisterClient" Margin="5"
+                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">Create a new account!</Button>
         </Border>
 
         <Border Grid.Row="3" Grid.Column="1">
-            <Button Click="Login">Login</Button>
+            <Button Click="Login" Margin="5"
+                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">Login</Button>
         </Border>
         
         

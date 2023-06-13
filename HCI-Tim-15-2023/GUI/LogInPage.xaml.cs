@@ -35,11 +35,15 @@ public partial class LogInPage : Page
         {
             if (Username.Text == users[i].username && Password.Text == users[i].password && users[i].roles == roles.CLIENT)
             {
-                this.NavigationService.Navigate(new ClientHomePage(users[i]));
+                var window = (MainWindow)Application.Current.MainWindow;
+                window.loggedUser = users[i];
+                this.NavigationService.Navigate(new ClientHomePage());
             }
             else if(Username.Text == users[i].username && Password.Text == users[i].password && users[i].roles == roles.ADMIN)
             {
-                this.NavigationService.Navigate(new AgentHomePage(users[i]));
+                var window = (MainWindow)Application.Current.MainWindow;
+                window.loggedUser = users[i];
+                this.NavigationService.Navigate(new AgentHomePage());
             }
         }
     }

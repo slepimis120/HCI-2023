@@ -7,12 +7,10 @@ using HCI_Tim_15_2023.GUI.CRUD;
 namespace HCI_Tim_15_2023.GUI;
 public partial class AgentHomePage : Page
 {
-    public User loggedUser;
 
-    public AgentHomePage(User user)
+    public AgentHomePage()
     {
         InitializeComponent();
-        this.loggedUser = user;
     }
 
     private void OpenRestaurantCRUD(object sender, RoutedEventArgs e)
