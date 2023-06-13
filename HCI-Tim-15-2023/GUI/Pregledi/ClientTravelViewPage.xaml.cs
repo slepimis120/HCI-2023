@@ -230,6 +230,7 @@ public partial class ClientTravelViewPage : Page
 
     private void BookTravel(object sender, RoutedEventArgs e)
     {
+        Travel travel = travels[TravelList.Items.IndexOf(selectedTravel)];
         NavigationService.Navigate(new ReservationCreatePage());
     }
 }
