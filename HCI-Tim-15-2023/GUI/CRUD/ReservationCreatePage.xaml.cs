@@ -33,6 +33,13 @@ namespace HCI_Tim_15_2023.GUI.CRUD
             AddTravels();
         }
 
+        public ReservationCreatePage(Travel travel)
+        {
+            InitializeComponent();
+            AddTravels();
+            SelectTravel(travel);
+        }
+
         public void AddTravels()
         {
             string connectionString = "mongodb://localhost:27017";
@@ -52,6 +59,12 @@ namespace HCI_Tim_15_2023.GUI.CRUD
                 Travels.Items.Add(this.travels[i].name);
             }
         }
+
+        public void SelectTravel(Travel travel)
+        {
+            Travels.SelectedIndex = Travels.Items.IndexOf(travel.name);
+        }
+
         public void ReserveTrip(object sender, RoutedEventArgs e)
         {
             var window = (MainWindow)Application.Current.MainWindow;
