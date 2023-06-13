@@ -23,6 +23,8 @@ public partial class AgentMonthlySoldTravelViewPage : Page
     private int maxDistance = 99999999;
     private int minLocations = 0;
     private int maxLocations = 99999999;
+    private int minSold = 0;
+    private int maxSold = 99999999;
     private int month = 6;
     private int year = 2023;
 
@@ -77,7 +79,6 @@ public partial class AgentMonthlySoldTravelViewPage : Page
                 && travel.Distance() >= minDistance && travel.Distance() <= maxDistance
                 && travel.locations.Count >= minLocations && travel.locations.Count <= maxLocations)
             {
-                travels.Add(travel);
                 int b = 0;
                 foreach (BoughtTravel boughtTravel in GetBoughtTravelsFromDB())
                 {
@@ -85,7 +86,11 @@ public partial class AgentMonthlySoldTravelViewPage : Page
                         && boughtTravel.time.Month == month && boughtTravel.time.Year == year)
                         b++;
                 }
-                bought.Add(b);
+                if (b >= minSold && b <= maxSold)
+                {
+                    travels.Add(travel);
+                    bought.Add(b);
+                }
             }
         }
 
@@ -287,6 +292,10 @@ public partial class AgentMonthlySoldTravelViewPage : Page
             minLocations = 0;
         if (!Int32.TryParse(txtMaxLocations.Text, out maxLocations))
             maxLocations = 99999999;
+        if (!Int32.TryParse(txtMinSold.Text, out minSold))
+            minSold = 0;
+        if (!Int32.TryParse(txtMaxSold.Text, out maxSold))
+            maxSold = 99999999;
 
         LoadTravels();
     }
