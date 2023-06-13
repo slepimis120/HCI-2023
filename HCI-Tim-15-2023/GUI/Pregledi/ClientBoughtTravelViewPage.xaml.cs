@@ -6,6 +6,9 @@ using System.Windows;
 using System;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Microsoft.Maps.MapControl.WPF;
+using Loc = Microsoft.Maps.MapControl.WPF.Location;
+using Location = HCI_Tim_15_2023.Model.Location;
 
 namespace HCI_Tim_15_2023.GUI.Pregledi;
 
@@ -152,12 +155,39 @@ public partial class ClientBoughtTravelViewPage : Page
 
     private void UpdateMap()
     {
+        ClearMap();
 
+        Travel travel = travels[TravelList.Items.IndexOf(selectedTravel)].travel;
+        LocationCollection locs = new LocationCollection();
+
+        MapLayer mapLayer = new MapLayer();
+        mapLayer.Name = "MapPinLayer";
+
+        foreach (Location location in travel.locations)
+        {
+            Loc loc = new Loc(location.lat, location.lon);
+            Pushpin pushpin = new Pushpin();
+            pushpin.Background = new SolidColorBrush(Colors.Blue);
+            pushpin.Location = loc;
+            mapLayer.Children.Add(pushpin);
+
+            locs.Add(loc);
+        }
+
+        MapPolyline routeLine = new MapPolyline()
+        {
+            Locations = locs,
+            Stroke = new SolidColorBrush(Colors.Orange),
+            StrokeThickness = 5
+        };
+
+        myMap.Children.Add(routeLine);
+        myMap.Children.Add(mapLayer);
     }
 
     private void ClearMap()
     {
-
+        myMap.Children.Clear();
     }
 
     private void UpdateSelectedTravel()
