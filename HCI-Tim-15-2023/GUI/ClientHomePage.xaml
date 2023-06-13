@@ -15,9 +15,9 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="OpenClientReservationCreatePage">Book a travel</Button>
-        <Button Grid.Row="1" Click="OpenClientTravelViewPage">All travels</Button>
-        <Button Grid.Row="2" Click="OpenClientBoughtTravelViewPage">Travel history</Button>
-        <Button Grid.Row="3" Click="LogOut">Log out</Button>
+        <Button Grid.Row="0" Click="OpenClientReservationCreatePage" Content="Book a travel" Foreground="White" Background="#555555" Margin="10"/>
+        <Button Grid.Row="1" Click="OpenClientTravelViewPage" Content="All travels" Foreground="White" Background="#555555" Margin="10"/>
+        <Button Grid.Row="2" Click="OpenClientBoughtTravelViewPage" Content="Travel history" Foreground="White" Background="#555555" Margin="10"/>
+        <Button Grid.Row="3" Click="LogOut" Content="Log out" Background="#4286f4" Foreground="#ffffff" BorderBrush="#4286f4" Margin="10"/>
     </Grid>
 </Page>

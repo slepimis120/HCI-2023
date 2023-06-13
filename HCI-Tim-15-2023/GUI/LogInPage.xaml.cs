@@ -31,20 +31,35 @@ public partial class LogInPage : Page
     private void Login(object sender, RoutedEventArgs e)
     {
         List<User> users = GetUsersFromDB();
-        for (int i = 0; i < users.Count; i++)
+        bool exists = false;
+        if (Username.Text == "" || Password.Password.ToString() == "")
         {
-            if (Username.Text == users[i].username && Password.Text == users[i].password && users[i].roles == roles.CLIENT)
-            {
-                var window = (MainWindow)Application.Current.MainWindow;
-                window.loggedUser = users[i];
-                this.NavigationService.Navigate(new ClientHomePage());
+            exists = true;
+            MessageBox.Show("Fill in the blanks!");
+        }
+        else
+        {
+            for (int i = 0; i < users.Count; i++){ 
+                if (Username.Text == users[i].username && Password.Password.ToString() == users[i].password && users[i].roles == roles.CLIENT)
+                {
+                    exists = true;
+                    var window = (MainWindow)Application.Current.MainWindow;
+                    window.loggedUser = users[i];
+                    this.NavigationService.Navigate(new ClientHomePage());
+                }
+                else if (Username.Text == users[i].username && Password.Password.ToString() == users[i].password && users[i].roles == roles.ADMIN)
+                {
+                    exists = true;
+                    var window = (MainWindow)Application.Current.MainWindow;
+                    window.loggedUser = users[i];
+                    this.NavigationService.Navigate(new AgentHomePage());
+                    
+                }
             }
-            else if(Username.Text == users[i].username && Password.Text == users[i].password && users[i].roles == roles.ADMIN)
-            {
-                var window = (MainWindow)Application.Current.MainWindow;
-                window.loggedUser = users[i];
-                this.NavigationService.Navigate(new AgentHomePage());
-            }
+        }
+        if(exists == false)
+        {
+            MessageBox.Show("User does not exist. Try again!");
         }
     }
 

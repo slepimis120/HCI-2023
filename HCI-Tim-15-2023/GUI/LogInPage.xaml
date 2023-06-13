@@ -8,50 +8,84 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LogInPage">
 
-    <Grid>
-        <Grid.Resources >
-            <Style TargetType="Border" >
-                <Setter Property="Padding" Value="5,5,5,5" />
-            </Style>
-        </Grid.Resources>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Border Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Username:" FontWeight="Bold"/>
-        </Border>
-
-        <Border Grid.Row="0" Grid.Column="1">
-            <TextBox TextWrapping="Wrap" Name="Username" />
-        </Border>
-
-        <Border Grid.Row="1" Grid.Column="0" >
-            <TextBlock Text="Password:" FontWeight="Bold" />
-        </Border>
-
-        <Border Grid.Row="1" Grid.Column="1">
-            <TextBox TextWrapping="Wrap" Name="Password" />
-        </Border>
-
-        <Border Grid.Row="3" Grid.Column="0">
-            <Button Click="RegisterClient" Margin="5"
-                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">Create a new account!</Button>
-        </Border>
-
-        <Border Grid.Row="3" Grid.Column="1">
-            <Button Click="Login" Margin="5"
-                Background="#555555" Foreground="White" BorderBrush="#555555" BorderThickness="1" Padding="10">Login</Button>
-        </Border>
-        
-        
-    </Grid>
+    <Border Width="300"
+            Height="400">
+        <StackPanel Orientation="Vertical"
+                    Margin="20">
+            <TextBlock Text="Login" 
+                       FontSize="25"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       FontWeight="Bold"
+                       Padding="10"
+                       />
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Username" 
+                   Grid.Row="0"
+                   Margin="0,15"
+                   HorizontalAlignment="Left"/>
+                <TextBox Name="Username" Grid.Column="1"
+                  Grid.Row="1"
+                  Padding="0,5"
+                  Width="255"
+                  BorderThickness="0,0,0,1"
+                  HorizontalAlignment="Left"/>
+                <TextBlock Text="Password"
+                   Grid.Row="2"
+                   Margin="0,15"
+                   HorizontalAlignment="Left"/>
+                <PasswordBox Name="Password" Grid.Row="3"
+                      Padding="0,5"                           
+                      Width="255"
+                      BorderThickness="0,0,0,1"
+                      HorizontalAlignment="Left"/>
+            </Grid>
+            <Button x:Name="LoginBtn" 
+                    Content="Login" 
+                    Foreground="White"
+                    Background="#555555"
+                    Margin="0,15"
+                    Height="35"
+                    Width="250"
+                    Click="Login" BorderBrush="#555555" BorderThickness="1" Padding="10">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="LoginBorder" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="AliceBlue" TargetName="LoginBorder"  />
+                                            <Setter Property="TextBlock.Foreground" Value="Black"  TargetName="LoginBorder" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <TextBlock Text="Not a member?"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center"/>
+            <Button x:Name="RegisterBtn" 
+                    Content="Register" 
+                    Foreground="White"
+                    Background="#555555"
+                    Margin="0,5"
+                    Height="35"
+                    Width="150"
+                    Click="RegisterClient" BorderBrush="#555555" BorderThickness="1" Padding="5"/>
+        </StackPanel>
+    </Border>
 </Page>

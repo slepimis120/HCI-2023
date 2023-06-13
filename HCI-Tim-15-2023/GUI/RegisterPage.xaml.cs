@@ -68,7 +68,7 @@ namespace HCI_Tim_15_2023.GUI
             ComboBoxItem typeItem = (ComboBoxItem)Role.SelectedItem;
             string value = typeItem.Content.ToString();
             User newUser;
-            if (Username.Text == "" || Password.Text == "")
+            if (Username.Text == "" || Password.Password.ToString() == "")
             {
                 MessageBox.Show("Fields are empty!");
             }
@@ -76,11 +76,11 @@ namespace HCI_Tim_15_2023.GUI
             {
                 if (value == "CLIENT")
                 {
-                    newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Text, roles.CLIENT);
+                    newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Password.ToString(), roles.CLIENT);
                 }
                 else
                 {
-                    newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Text, roles.ADMIN);
+                    newUser = new User(GenerateUniqueID(collection), Username.Text, Password.Password.ToString(), roles.ADMIN);
                 }
                 collection.InsertOne(newUser);
                 MessageBox.Show("User added successfully!");
