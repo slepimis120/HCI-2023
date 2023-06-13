@@ -16,9 +16,20 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Margin="2" FontSize="10" Click="Left">&lt;</Button>
+                <Button Grid.Column="1" Margin="2" FontSize="10" Name="btnMonth">June 2023</Button>
+                <Button Grid.Column="2" Margin="2" FontSize="10" Click="Right">&gt;</Button>
+            </Grid>
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="6*"/>
@@ -28,9 +39,9 @@
                 <TextBox Grid.Column="1" Margin="2" FontSize="10" TextChanged="Search" Name="txtSearch"></TextBox>
                 <Button Grid.Column="2" Margin="2" FontSize="10" Click="Filter">Filter</Button>
             </Grid>
-            <ListBox Grid.Row="1" Name="TravelList" ScrollViewer.CanContentScroll="False">
+            <ListBox Grid.Row="2" Name="TravelList" ScrollViewer.CanContentScroll="False">
             </ListBox>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
                     <RowDefinition Height="1*"/>
