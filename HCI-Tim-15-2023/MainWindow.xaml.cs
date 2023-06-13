@@ -73,6 +73,15 @@ namespace HCI_Tim_15_2023
                 case "TravelCrudPage":
                     htmlPage = "travel";
                     break;
+                case "LogInPage":
+                    htmlPage = "login";
+                    break;
+                case "RegisterPage":
+                    htmlPage = "register";
+                    break;
+                case "ReserveTrip":
+                    htmlPage = "ReserveTrip";
+                    break;
                 default:
                     htmlPage = "index";
                     break;
