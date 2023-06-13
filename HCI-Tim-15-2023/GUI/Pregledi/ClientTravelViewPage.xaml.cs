@@ -12,9 +12,15 @@ namespace HCI_Tim_15_2023.GUI.Pregledi;
 
 public partial class ClientTravelViewPage : Page
 {
-    ListBoxItem selectedTravel = null;
-    List<Travel> travels = new List<Travel>();
+    private ListBoxItem selectedTravel = null;
+    private List<Travel> travels = new List<Travel>();
 
+    private int minPrice = 0;
+    private int maxPrice = 99999999;
+    private int minDistance = 0;
+    private int maxDistance = 99999999;
+    private int minLocations = 0;
+    private int maxLocations = 99999999;
 
     public ClientTravelViewPage()
     {
@@ -45,7 +51,11 @@ public partial class ClientTravelViewPage : Page
 
         foreach (Travel travel in GetTravelsFromDB())
         {
-            travels.Add(travel);
+            if(travel.name.Contains(txtSearch.Text)
+                && travel.Cost() >= minPrice && travel.Cost() <= maxPrice
+                && travel.Distance() >= minDistance && travel.Distance() <= maxDistance
+                && travel.locations.Count >= minLocations && travel.locations.Count <= maxLocations)
+                travels.Add(travel);
         }
 
         UpdateTravels();
@@ -55,6 +65,7 @@ public partial class ClientTravelViewPage : Page
     {
         TravelList.Items.Clear();
         ClearSelectedTravel();
+        ClearMap();
 
         List<ListBoxItem> travelItems = new List<ListBoxItem>();
 
@@ -131,6 +142,11 @@ public partial class ClientTravelViewPage : Page
 
     }
 
+    private void ClearMap()
+    {
+
+    }
+
     private void UpdateSelectedTravel()
     {
         LocationList.Items.Clear();
@@ -183,5 +199,25 @@ public partial class ClientTravelViewPage : Page
             FilterDialog.Visibility = Visibility.Hidden;
         else
             FilterDialog.Visibility = Visibility.Visible;
+    }
+
+    private void Apply(object sender, RoutedEventArgs e)
+    {
+        FilterDialog.Visibility = Visibility.Hidden;
+
+        if(!Int32.TryParse(txtMinPrice.Text, out minPrice))
+            minPrice = 0;
+        if(!Int32.TryParse(txtMaxPrice.Text, out maxPrice))
+            maxPrice = 99999999;
+        if(!Int32.TryParse(txtMinDistance.Text, out minDistance))
+            minDistance = 0;
+        if(!Int32.TryParse(txtMaxDistance.Text, out maxDistance))
+            maxDistance = 99999999;
+        if(!Int32.TryParse(txtMinLocations.Text, out minLocations))
+            minLocations = 0;
+        if(!Int32.TryParse(txtMaxLocations.Text, out maxLocations))
+            maxLocations = 99999999;
+
+        LoadTravels();
     }
 }

@@ -25,18 +25,43 @@
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0">Search:</TextBlock>
-                <TextBox Grid.Column="1" Margin="2" FontSize="10" TextChanged="Search"></TextBox>
+                <TextBox Grid.Column="1" Margin="2" FontSize="10" TextChanged="Search" Name="txtSearch"></TextBox>
                 <Button Grid.Column="2" Margin="2" FontSize="10" Click="Filter">Filter</Button>
             </Grid>
             <ListBox Grid.Row="1" Name="TravelList" ScrollViewer.CanContentScroll="False">
             </ListBox>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Name="FilterDialog" Visibility="Hidden">
-                    <TextBlock>sbgrsdb</TextBlock>
+                <Grid Grid.Row="0" Name="FilterDialog" Visibility="Hidden" Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Min. Price:</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtMinPrice"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Max. Price:</TextBlock>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtMaxPrice"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Min. Distance:</TextBlock>
+                    <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtMinDistance"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0">Max. Distance:</TextBlock>
+                    <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtMaxDistance"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0">Min. Locations:</TextBlock>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="txtMinLocations"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0">Max. Locations:</TextBlock>
+                    <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtMaxLocations"/>
+                    <Button Grid.Row="6" Grid.Column="0" Click="Apply" Margin="2">Apply</Button>
                 </Grid>
             </Grid>
         </Grid>
