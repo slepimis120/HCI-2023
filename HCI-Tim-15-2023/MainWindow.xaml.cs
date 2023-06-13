@@ -79,7 +79,7 @@ namespace HCI_Tim_15_2023
                 case "RegisterPage":
                     htmlPage = "register";
                     break;
-                case "ReserveTrip":
+                case "ReservationCreatePage":
                     htmlPage = "ReserveTrip";
                     break;
                 default:
